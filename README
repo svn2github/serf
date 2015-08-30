@@ -1,12 +1,21 @@
 This is the top of the Apache Serf project.
 
-The serf project started as part of the old 'Apache Commons' library in r4 of
-the ASF repository, but the project left the ASF as it wasn't big enough to
-be handled as a project of its own when the commons project closed down.
+The serf project's Subversion history started as part of the old 'Apache
+Commons' C library in r4 of the ASF repository in September 2003. When this
+library project closed down Greg Stein and Justin Erenkrantz continued
+development on the serf library outside the ASF, but kept the requirement that
+every committer needed an Apache Contributer License Agreement, to allow
+moving back to the ASF.
+
+In August 2004 Serf development continued in the privately hosted repository
+at http://svn.webdav.org/repos/projects/serf/, where it shared a repository
+with several other projects for some time (until r1061). In August 2006 the
+project moved to a google code repository at http://serf.googlecode.com/svn/
 
 After many years at googlecode the repository there was closed down/made
 read only when Google decided to stop hosting third party projects there. At
-that point the project came back to the ASF as a project of its own.
+that point the project came back to the ASF as a top level project of its own.
+(Yes this happened in August too)
 
 A revision translation table of the import from google code to the ASF
 repository is inserted at the bottom of this file. During this import, the
