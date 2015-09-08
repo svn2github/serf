@@ -42,7 +42,7 @@ fi
 if [ ! -z "${openssldir}" ]; then
     opensslconfig="OPENSSL=${openssldir}"
 else
-    opemsslconfig="OPENSSL=${SERFBB_OPENSSL}"
+    opensslconfig="OPENSSL=${SERFBB_OPENSSL}"
 fi
 
 # Build
