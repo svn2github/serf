@@ -29,18 +29,13 @@ ${scripts}/mkramdisk.sh ${volume_name} ${ramconf}
 # An optional parameter tells build scripts which version of APR to use
 if [ ! -z "$1" ]; then
     aprdir=$(eval 'echo $SERFBB_'"$1")
-fi
-if [ ! -z "${aprdir}" -a  -d "${aprdir}" ]; then
     aprconfig="APR=${aprdir}"
     apuconfig="APU=${aprdir}"
 fi
 
 # Another optional parameter tells build scripts to use a different OpenSSL
 if [ ! -z "$2" ]; then
-    openssldir=$(eval 'echo $SERFBB_'"$2")
-fi
-if [ ! -z "${openssldir}" ]; then
-    opensslconfig="OPENSSL=${openssldir}"
+    opensslconfig="OPENSSL=$(eval 'echo $SERFBB_'"$2")"
 else
     opensslconfig="OPENSSL=${SERFBB_OPENSSL}"
 fi
