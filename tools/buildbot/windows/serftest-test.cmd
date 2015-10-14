@@ -29,7 +29,7 @@ SET INSTALL=%CD%\install
 
 IF NOT EXIST "%INSTALL%\" MKDIR "%INSTALL%"
 
-PATH %PATH%;%BB%\deps\release\bin;%BB%\deps\build\scons\scripts
+PATH %INTDIR%\bin;%PATH%;%BB%\deps\build\scons\scripts
 SET PYTHONPATH=%BB%\deps\build\scons\Lib\site-packages\scons
 
 SET SA=PREFIX=%INSTALL% OPENSSL=%INTDIR% ZLIB=%INTDIR% ZLIB=%INTDIR% APR=%INTDIR% APU=%INTDIR% SOURCE_LAYOUT=no TARGET_ARCH=win32 MSVC_VERSION=10.0 APR_STATIC=yes
