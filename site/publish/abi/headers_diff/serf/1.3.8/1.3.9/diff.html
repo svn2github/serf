@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="serf, header, diff" />
+    <meta name="description" content="Diff for header files between 1.3.8 and 1.3.9 versions of serf" />
+    <link rel="stylesheet" type="text/css" href="../../../../css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../css/headers_diff.css" />
+    
+    
+    <title>
+        serf: headers diff between 1.3.8 and 1.3.9 versions
+    </title>
+    
+    </head>
+
+<body>
+<table width='100%' cellpadding='0' cellspacing='0'><tr><td><table cellpadding='0' cellspacing='0'><tr><td align='center'><h1 class='tool'><a title='ABI tracker for serf' href='../../../../timeline/serf/index.html' class='tool'>ABI<br/>Tracker</a></h1></td><td width='30px;'></td><td><h1>(serf)</h1></td></tr></table><hr/>
+<br/>
+<br/>
+<h1>Headers diff: <span class='version'>1.3.8</span> vs <span class='version'>1.3.9</span></h1><br/><br/> 
+  <table class='diff_tbl' border="0" cellpadding="0" cellspacing="0"> 
+  <tr id="part-1" bgcolor="orange"><th>&nbsp;serf.h (1.3.8)&nbsp;</th><th> </th><th>&nbsp;serf.h (1.3.9)&nbsp;</th></tr> 
+      <tr id="diff0001"></tr>
+      <tr><td class="lblock">/* <span class="delete">Copyright 2002-2004 Justin Erenkrantz and Greg Stein</span></td><td> </td><td class="rblock">/* <span class="insert">====================================================================</span></td></tr>
+      <tr><td class="lblock"><span class="delete"> *</span></td><td> </td><td class="rblock"> *    Licensed <span class="insert">to the Apache Software Foundation (ASF) under one</span></td></tr>
+      <tr><td class="lblock"> * Licensed under the Apache License, Version 2.0 (the <span class="delete">"License");</span></td><td> </td><td class="rblock"><span class="insert"> *    or more contributor license agreements.  See the NOTICE file</span></td></tr>
+      <tr><td class="lblock"> * you may not use this file except in compliance with the License.</td><td> </td><td class="rblock"><span class="insert"> *    distributed with this work for additional information</span></td></tr>
+      <tr><td class="lblock"> <span class="delete">*</span> You may obtain a copy of the License at</td><td> </td><td class="rblock"><span class="insert"> *    regarding copyright ownership.  The ASF licenses this file</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> *    to you</span> under the Apache License, Version 2.0 (the</td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"> *    <span class="insert">"License");</span> you may not use this file except in compliance</td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"> <span class="insert">*</span>    with the License.  You may obtain a copy of the License at</td></tr>
+      <tr><td class="left"> *</td><td> </td><td class="right"> *</td></tr>
+      <tr id="diff0002"></tr>
+      <tr><td class="lblock"> *     http://www.apache.org/licenses/LICENSE-2.0</td><td> </td><td class="rblock"> *     <span class="insert"> </span>http://www.apache.org/licenses/LICENSE-2.0</td></tr>
+      <tr><td class="left"> *</td><td> </td><td class="right"> *</td></tr>
+      <tr id="diff0003"></tr>
+      <tr><td class="lblock"> * Unless required by applicable law or agreed to in writing, <span class="delete">software</span></td><td> </td><td class="rblock"> *    Unless required by applicable law or agreed to in writing,</td></tr>
+      <tr><td class="lblock"> * distributed under the License is distributed on an "AS IS" BASIS,</td><td> </td><td class="rblock"> *    <span class="insert">software</span> distributed under the License is distributed on an</td></tr>
+      <tr><td class="lblock"> <span class="delete">*</span> WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</td><td> </td><td class="rblock"> <span class="insert">*</span>    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</td></tr>
+      <tr><td class="lblock"> <span class="delete">*</span> See the License for the specific language governing permissions and</td><td> </td><td class="rblock"> <span class="insert">*</span>    KIND, either express or implied.  See the License for the</td></tr>
+      <tr><td class="lblock"> <span class="delete">*</span> limitations under the License.</td><td> </td><td class="rblock"> <span class="insert">*</span>    specific language governing permissions and limitations</td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"> <span class="insert">*</span>    under the License.</td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"> <span class="insert">* ====================================================================</span></td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">#ifndef SERF_H</td><td> </td><td class="right">#ifndef SERF_H</td></tr>
+      <tr><td class="left">#define SERF_H</td><td> </td><td class="right">#define SERF_H</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr><td class="left"> * @file serf.h</td><td> </td><td class="right"> * @file serf.h</td></tr>
+      <tr><td class="left"> * @brief Main serf header file</td><td> </td><td class="right"> * @brief Main serf header file</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr id="part-2" class="change" ><th><small>skipping to change at</small><a href="#part-2"><em> line 1049<span class="hide"> &para;</span></em></a></th><th> </th><th><small>skipping to change at</small><a href="#part-2"><em> line 1054<span class="hide"> &para;</span></em></a></th></tr>
+      <tr><td class="left">void serf_debug__closed_conn(</td><td> </td><td class="right">void serf_debug__closed_conn(</td></tr>
+      <tr><td class="left">    serf_bucket_alloc_t *allocator);</td><td> </td><td class="right">    serf_bucket_alloc_t *allocator);</td></tr>
+      <tr><td class="left">void serf_debug__bucket_destroy(</td><td> </td><td class="right">void serf_debug__bucket_destroy(</td></tr>
+      <tr><td class="left">    const serf_bucket_t *bucket);</td><td> </td><td class="right">    const serf_bucket_t *bucket);</td></tr>
+      <tr><td class="left">void serf_debug__bucket_alloc_check(</td><td> </td><td class="right">void serf_debug__bucket_alloc_check(</td></tr>
+      <tr><td class="left">    serf_bucket_alloc_t *allocator);</td><td> </td><td class="right">    serf_bucket_alloc_t *allocator);</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/* Version info */</td><td> </td><td class="right">/* Version info */</td></tr>
+      <tr><td class="left">#define SERF_MAJOR_VERSION 1</td><td> </td><td class="right">#define SERF_MAJOR_VERSION 1</td></tr>
+      <tr><td class="left">#define SERF_MINOR_VERSION 3</td><td> </td><td class="right">#define SERF_MINOR_VERSION 3</td></tr>
+      <tr id="diff0004"></tr>
+      <tr><td class="lblock">#define SERF_PATCH_VERSION <span class="delete">8</span></td><td> </td><td class="rblock">#define SERF_PATCH_VERSION <span class="insert">9</span></td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/* Version number string */</td><td> </td><td class="right">/* Version number string */</td></tr>
+      <tr><td class="left">#define SERF_VERSION_STRING APR_STRINGIFY(SERF_MAJOR_VERSION) "." \</td><td> </td><td class="right">#define SERF_VERSION_STRING APR_STRINGIFY(SERF_MAJOR_VERSION) "." \</td></tr>
+      <tr><td class="left">                            APR_STRINGIFY(SERF_MINOR_VERSION) "." \</td><td> </td><td class="right">                            APR_STRINGIFY(SERF_MINOR_VERSION) "." \</td></tr>
+      <tr><td class="left">                            APR_STRINGIFY(SERF_PATCH_VERSION)</td><td> </td><td class="right">                            APR_STRINGIFY(SERF_PATCH_VERSION)</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr><td class="left"> * Check at compile time if the Serf version is at least a certain</td><td> </td><td class="right"> * Check at compile time if the Serf version is at least a certain</td></tr>
+      <tr><td class="left"> * level.</td><td> </td><td class="right"> * level.</td></tr>
+      <tr><td class="left"> * @param major The major version component of the version checked</td><td> </td><td class="right"> * @param major The major version component of the version checked</td></tr>
+
+     <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+     <tr id="end" bgcolor="gray"><th colspan="5" align="center">&nbsp;End of changes. 4 change blocks.&nbsp;</th></tr>
+     <tr class="stats"><th><i>12 lines changed or deleted</i></th><th><i> </i></th><th><i>17 lines changed or added</i></th></tr>
+     <tr><td colspan="5" align="center" class="small"></td></tr>
+   </table>
+   <br/><br/>
+ 
+  <table class='diff_tbl' border="0" cellpadding="0" cellspacing="0"> 
+  <tr id="part-1" bgcolor="orange"><th>&nbsp;serf_bucket_types.h (1.3.8)&nbsp;</th><th> </th><th>&nbsp;serf_bucket_types.h (1.3.9)&nbsp;</th></tr> 
+      <tr id="diff0001"></tr>
+      <tr><td class="lblock">/* <span class="delete">Copyright 2002-2004 Justin Erenkrantz and Greg Stein</span></td><td> </td><td class="rblock">/* <span class="insert">====================================================================</span></td></tr>
+      <tr><td class="lblock"><span class="delete"> *</span></td><td> </td><td class="rblock"> *    Licensed <span class="insert">to the Apache Software Foundation (ASF) under one</span></td></tr>
+      <tr><td class="lblock"> * Licensed under the Apache License, Version 2.0 (the <span class="delete">"License");</span></td><td> </td><td class="rblock"><span class="insert"> *    or more contributor license agreements.  See the NOTICE file</span></td></tr>
+      <tr><td class="lblock"> * you may not use this file except in compliance with the License.</td><td> </td><td class="rblock"><span class="insert"> *    distributed with this work for additional information</span></td></tr>
+      <tr><td class="lblock"> <span class="delete">*</span> You may obtain a copy of the License at</td><td> </td><td class="rblock"><span class="insert"> *    regarding copyright ownership.  The ASF licenses this file</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> *    to you</span> under the Apache License, Version 2.0 (the</td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"> *    <span class="insert">"License");</span> you may not use this file except in compliance</td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"> <span class="insert">*</span>    with the License.  You may obtain a copy of the License at</td></tr>
+      <tr><td class="left"> *</td><td> </td><td class="right"> *</td></tr>
+      <tr id="diff0002"></tr>
+      <tr><td class="lblock"> *     http://www.apache.org/licenses/LICENSE-2.0</td><td> </td><td class="rblock"> *     <span class="insert"> </span>http://www.apache.org/licenses/LICENSE-2.0</td></tr>
+      <tr><td class="left"> *</td><td> </td><td class="right"> *</td></tr>
+      <tr id="diff0003"></tr>
+      <tr><td class="lblock"> * Unless required by applicable law or agreed to in writing, <span class="delete">software</span></td><td> </td><td class="rblock"> *    Unless required by applicable law or agreed to in writing,</td></tr>
+      <tr><td class="lblock"> * distributed under the License is distributed on an "AS IS" BASIS,</td><td> </td><td class="rblock"> *    <span class="insert">software</span> distributed under the License is distributed on an</td></tr>
+      <tr><td class="lblock"> <span class="delete">*</span> WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</td><td> </td><td class="rblock"> <span class="insert">*</span>    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</td></tr>
+      <tr><td class="lblock"> <span class="delete">*</span> See the License for the specific language governing permissions and</td><td> </td><td class="rblock"> <span class="insert">*</span>    KIND, either express or implied.  See the License for the</td></tr>
+      <tr><td class="lblock"> <span class="delete">*</span> limitations under the License.</td><td> </td><td class="rblock"> <span class="insert">*</span>    specific language governing permissions and limitations</td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"> <span class="insert">*</span>    under the License.</td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"> <span class="insert">* ====================================================================</span></td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">#ifndef SERF_BUCKET_TYPES_H</td><td> </td><td class="right">#ifndef SERF_BUCKET_TYPES_H</td></tr>
+      <tr><td class="left">#define SERF_BUCKET_TYPES_H</td><td> </td><td class="right">#define SERF_BUCKET_TYPES_H</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">#include &lt;apr_mmap.h&gt;</td><td> </td><td class="right">#include &lt;apr_mmap.h&gt;</td></tr>
+      <tr><td class="left">#include &lt;apr_hash.h&gt;</td><td> </td><td class="right">#include &lt;apr_hash.h&gt;</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/* this header and serf.h refer to each other, so take a little extra care 
+*/</td><td> </td><td class="right">/* this header and serf.h refer to each other, so take a little extra care 
+*/</td></tr>
+      <tr><td class="left">#ifndef SERF_H</td><td> </td><td class="right">#ifndef SERF_H</td></tr>
+
+     <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+     <tr id="end" bgcolor="gray"><th colspan="5" align="center">&nbsp;End of changes. 3 change blocks.&nbsp;</th></tr>
+     <tr class="stats"><th><i>11 lines changed or deleted</i></th><th><i> </i></th><th><i>16 lines changed or added</i></th></tr>
+     <tr><td colspan="5" align="center" class="small"></td></tr>
+   </table>
+   <br/><br/>
+ 
+  <table class='diff_tbl' border="0" cellpadding="0" cellspacing="0"> 
+  <tr id="part-1" bgcolor="orange"><th>&nbsp;serf_bucket_util.h (1.3.8)&nbsp;</th><th> </th><th>&nbsp;serf_bucket_util.h (1.3.9)&nbsp;</th></tr> 
+      <tr id="diff0001"></tr>
+      <tr><td class="lblock">/* <span class="delete">Copyright 2002-2004 Justin Erenkrantz and Greg Stein</span></td><td> </td><td class="rblock">/* <span class="insert">====================================================================</span></td></tr>
+      <tr><td class="lblock"><span class="delete"> *</span></td><td> </td><td class="rblock"> *    Licensed <span class="insert">to the Apache Software Foundation (ASF) under one</span></td></tr>
+      <tr><td class="lblock"> * Licensed under the Apache License, Version 2.0 (the <span class="delete">"License");</span></td><td> </td><td class="rblock"><span class="insert"> *    or more contributor license agreements.  See the NOTICE file</span></td></tr>
+      <tr><td class="lblock"> * you may not use this file except in compliance with the License.</td><td> </td><td class="rblock"><span class="insert"> *    distributed with this work for additional information</span></td></tr>
+      <tr><td class="lblock"> <span class="delete">*</span> You may obtain a copy of the License at</td><td> </td><td class="rblock"><span class="insert"> *    regarding copyright ownership.  The ASF licenses this file</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> *    to you</span> under the Apache License, Version 2.0 (the</td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"> *    <span class="insert">"License");</span> you may not use this file except in compliance</td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"> <span class="insert">*</span>    with the License.  You may obtain a copy of the License at</td></tr>
+      <tr><td class="left"> *</td><td> </td><td class="right"> *</td></tr>
+      <tr id="diff0002"></tr>
+      <tr><td class="lblock"> *     http://www.apache.org/licenses/LICENSE-2.0</td><td> </td><td class="rblock"> *     <span class="insert"> </span>http://www.apache.org/licenses/LICENSE-2.0</td></tr>
+      <tr><td class="left"> *</td><td> </td><td class="right"> *</td></tr>
+      <tr id="diff0003"></tr>
+      <tr><td class="lblock"> * Unless required by applicable law or agreed to in writing, <span class="delete">software</span></td><td> </td><td class="rblock"> *    Unless required by applicable law or agreed to in writing,</td></tr>
+      <tr><td class="lblock"> * distributed under the License is distributed on an "AS IS" BASIS,</td><td> </td><td class="rblock"> *    <span class="insert">software</span> distributed under the License is distributed on an</td></tr>
+      <tr><td class="lblock"> <span class="delete">*</span> WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</td><td> </td><td class="rblock"> <span class="insert">*</span>    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</td></tr>
+      <tr><td class="lblock"> <span class="delete">*</span> See the License for the specific language governing permissions and</td><td> </td><td class="rblock"> <span class="insert">*</span>    KIND, either express or implied.  See the License for the</td></tr>
+      <tr><td class="lblock"> <span class="delete">*</span> limitations under the License.</td><td> </td><td class="rblock"> <span class="insert">*</span>    specific language governing permissions and limitations</td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"> <span class="insert">*</span>    under the License.</td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"> <span class="insert">* ====================================================================</span></td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">#ifndef SERF_BUCKET_UTIL_H</td><td> </td><td class="right">#ifndef SERF_BUCKET_UTIL_H</td></tr>
+      <tr><td class="left">#define SERF_BUCKET_UTIL_H</td><td> </td><td class="right">#define SERF_BUCKET_UTIL_H</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr><td class="left"> * @file serf_bucket_util.h</td><td> </td><td class="right"> * @file serf_bucket_util.h</td></tr>
+      <tr><td class="left"> * @brief This header defines a set of functions and other utilities</td><td> </td><td class="right"> * @brief This header defines a set of functions and other utilities</td></tr>
+      <tr><td class="left"> * for implementing buckets. It is not needed by users of the bucket</td><td> </td><td class="right"> * for implementing buckets. It is not needed by users of the bucket</td></tr>
+      <tr><td class="left"> * system.</td><td> </td><td class="right"> * system.</td></tr>
+
+     <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+     <tr id="end" bgcolor="gray"><th colspan="5" align="center">&nbsp;End of changes. 3 change blocks.&nbsp;</th></tr>
+     <tr class="stats"><th><i>11 lines changed or deleted</i></th><th><i> </i></th><th><i>16 lines changed or added</i></th></tr>
+     <tr><td colspan="5" align="center" class="small"></td></tr>
+   </table>
+   <br/><div style='width:100%;' align='left' class='small'>This html diff was produced by rfcdiff 1.41.The latest version is available from <a href='http://tools.ietf.org/tools/rfcdiff/'>http://tools.ietf.org/tools/rfcdiff/</a></div>
+</td></tr></table>
+</body>
+</html>

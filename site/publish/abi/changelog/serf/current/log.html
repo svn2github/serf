@@ -1,0 +1,1355 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="serf, current, changes, changelog" />
+    <meta name="description" content="Log of changes in the package" />
+    <link rel="stylesheet" type="text/css" href="../../../css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../../../css/changelog.css" />
+    
+    
+    <title>
+        serf current: changelog
+    </title>
+    
+    </head>
+
+<body>
+<table cellpadding='0' cellspacing='0'><tr><td align='center'><h1 class='tool'><a title='ABI tracker for serf' href='../../../timeline/serf/index.html' class='tool'>ABI<br/>Tracker</a></h1></td><td width='30px;'></td><td><h1>(serf)</h1></td></tr></table><hr/>
+<br/>
+<br/>
+<h1>Changelog from Svn</h1><br/><br/>
+<div class='changelog'>
+<pre class='wrap'>------------------------------------------------------------------------
+r1791834 | kotkov | 2017-04-18 22:20:18 +0200 (Tue, 18 Apr 2017) | 6 lines
+
+Following up on r1786654, use a runtime check instead of an #ifdef when
+scheduling Brotli tests to avoid -Wunused-function warnings.
+
+* test/test_buckets.c
+  (test_buckets): As above.
+
+------------------------------------------------------------------------
+r1791833 | kotkov | 2017-04-18 22:19:31 +0200 (Tue, 18 Apr 2017) | 9 lines
+
+Following up on r1786654, properly declare the new API function,
+serf_bucket_is_brotli_supported() as a function without arguments.
+
+* serf_bucket_types.h
+  (serf_bucket_is_brotli_supported): As above.
+
+* buckets/brotli_buckets.c
+  (serf_bucket_is_brotli_supported): As above.
+
+------------------------------------------------------------------------
+r1788146 | kotkov | 2017-03-22 19:07:51 +0100 (Wed, 22 Mar 2017) | 21 lines
+
+HTTP/2: Fix improper handling of SETTINGS_INITIAL_WINDOW_SIZE that
+could result in the "HTTP2 flow control limits exceeded" error when
+talking to nginx servers:
+
+    &gt; serf_get --http2 https://www.cloudflare.com
+    Error running context: (120153) HTTP2 flow control limits exceeded
+
+Serf used the incoming value to update the size of the connection
+flow-control window.  Doing so violates RFC 7540, 6.9.2 [1], which
+states that the SETTINGS_INITIAL_WINDOW_SIZE value in the SETTINGS
+frame *cannot* alter the connection flow-control window size, and
+that it only affects the initial window size for new streams.
+
+[1] https://tools.ietf.org/html/rfc7540#section-6.9.2
+
+* protocols/http2_protocol.c
+  (http2_handle_settings): Don't change the connection flow-control
+   window size.  Include the relevant part of RFC 7540 in the comment.
+
+Approved by: rhuijben
+
+------------------------------------------------------------------------
+r1788145 | kotkov | 2017-03-22 19:06:19 +0100 (Wed, 22 Mar 2017) | 7 lines
+
+Unbreak build with defined SERF_DEBUG_BUCKET_USE.
+
+* src/pump.c
+  (pump_cleanup): Fix typo when calling serf__bucket_drain().
+
+Approved by: rhuijben
+
+------------------------------------------------------------------------
+r1786654 | kotkov | 2017-03-13 11:37:25 +0100 (Mon, 13 Mar 2017) | 47 lines
+
+Add support for decompressing Brotli (RFC 7932) data and allow decoding
+"Content-Encoding: br" responses.
+
+The patch introduces an optional dependency on the Brotli library from
+https://github.com/google/brotli and a new bucket that allows decoding
+Brotli data.  The new bucket features zero-copy processing, which is only
+possible with the new API from the upcoming 1.0.x series of the library.
+
+* serf_bucket_types.h
+  (serf_bucket_is_brotli_supported,
+   serf_bucket_brotli_decompress_create): Declare new functions.
+  (SERF_BUCKET_IS_BROTLI_DECOMPRESS,
+   serf_bucket_brotli_decompress_create): Declare new bucket type.
+
+* buckets/brotli_buckets.c:
+  New file containing the implementation of the new bucket.  Brotli is
+  an optional dependency, so provide function stubs if it is not supported
+  and indicate that in serf_bucket_is_brotli_supported().
+
+* buckets/response_buckets.c
+  (run_machine): Decode "Content-Encoding: br" if Brotli is supported.
+
+* test/serf_bwtp.c
+  (setup_request, setup_channel): Indicate Brotli support in "Accept-Encoding".
+
+* test/serf_get.c
+  (setup_request): Indicate Brotli support in "Accept-Encoding".
+
+* test/serf_spider.c
+  (setup_request): Indicate Brotli support in "Accept-Encoding".
+
+* test/test_buckets.c
+  (test_brotli_decompress_bucket_basic,
+   test_brotli_decompress_bucket_truncated_input,
+   test_brotli_decompress_bucket_read_bytewise,
+   test_brotli_decompress_bucket_chunked_input,
+   test_brotli_decompress_bucket_chunked_input2,
+   test_brotli_decompress_bucket_garbage_at_end,
+   test_brotli_decompress_response_body): New tests.
+  (test_buckets): Run new tests if Serf is built with Brotli support.
+
+* SConstruct: Pick up location of the Brotli library from the new
+  BROTLI variable.  In case it's set, ensure that we are building
+  with an appropriate version of the library and define SERF_HAVE_BROTLI.
+
+Approved by: rhuijben
+
+------------------------------------------------------------------------
+r1781658 | stsp | 2017-02-04 12:57:44 +0100 (Sat, 04 Feb 2017) | 9 lines
+
+Fix 'scons check' build with LibreSSL.
+
+* test/MockHTTPinC/MockHTTP_server.c
+  (USE_LEGACY_OPENSSL): Remove this definition.
+  (bio_apr_socket_create, bio_set_data, bio_get_data, bio_apr_socket_method,
+   bio_meth_apr_socket_new, bio_meth_free): Check SERF_NO_SSL_BIO_WRAPPERS
+   instead of USE_LEGACY_OPENSSL.
+  (initSSLCtx): Check SERF_HAVE_OPENSSL_MALLOC_INIT, not USE_LEGACY_OPENSSL.
+
+------------------------------------------------------------------------
+r1781241 | stsp | 2017-02-01 13:59:29 +0100 (Wed, 01 Feb 2017) | 7 lines
+
+* test/MockHTTPinC/MockHTTP_server.c
+  (initSSLCtx): SSL_CTX_add_extra_chain_cert transfers ownership of the given
+   certificate, so it's best to call X509_STORE_add_cert with that certificate
+   before rather than after it. 
+
+Patch by: Adam Langley
+
+------------------------------------------------------------------------
+r1775257 | stsp | 2016-12-20 11:52:19 +0100 (Tue, 20 Dec 2016) | 11 lines
+
+Get rid of another SSL feature check based on a version number.
+
+* SConstruct: Add a check for OpenSSL ALPN support and provide
+   SERF_HAVE_OPENSSL_ALPN.
+
+* buckets/ssl_buckets.c:
+  (serf_ssl_negotiate_protocol, ssl_get_selected_protocol): Use
+   SERF_HAVE_OPENSSL_ALPN instead of OPENSSL_VERSION_NUMBER.
+
+Found by: brane
+
+------------------------------------------------------------------------
+r1775254 | stsp | 2016-12-20 11:38:12 +0100 (Tue, 20 Dec 2016) | 3 lines
+
+* buckets/ssl_buckets.c: Finally kill the USE_LEGACY_OPENSSL macro
+   and the OpenSSL version checks involved in its definition.
+
+------------------------------------------------------------------------
+r1775253 | stsp | 2016-12-20 11:36:34 +0100 (Tue, 20 Dec 2016) | 6 lines
+
+* SConstruct: Add a check for thread locking callbacks which were apparently
+    removed in OpenSSL 1.1.0. Provide SERF_HAVE_SSL_LOCKING_CALLBACKS.
+
+* buckets/ssl_buckets.c: Use SERF_HAVE_SSL_LOCKING_CALLBACKS instead of
+    USE_LEGACY_OPENSSL.
+
+------------------------------------------------------------------------
+r1775251 | stsp | 2016-12-20 11:25:55 +0100 (Tue, 20 Dec 2016) | 5 lines
+
+* buckets/ssl_buckets.c: Put parens around the argument passed to
+   the X509_STORE_get0_param macro as well.
+
+Suggested by: brane
+
+------------------------------------------------------------------------
+r1775250 | stsp | 2016-12-20 11:22:11 +0100 (Tue, 20 Dec 2016) | 5 lines
+
+* buckets/ssl_buckets.c: Put parens around expansion of custom
+   X509_STORE_get0_param macro.
+
+Suggested by: brane
+
+------------------------------------------------------------------------
+r1775248 | stsp | 2016-12-20 11:17:46 +0100 (Tue, 20 Dec 2016) | 7 lines
+
+* SConstruct: Check for X509_STORE wrapper functions and provide
+    SERF_NO_SSL_X509_STORE_WRAPPERS.
+
+* buckets/ssl_buckets.c: Provide custom X509_STORE_get0_param() macro
+   if SERF_NO_SSL_X509_STORE_WRAPPERS is defined, instead of basing
+   this decision off of OPENSSL_VERSION_NUMBER.
+
+------------------------------------------------------------------------
+r1775246 | stsp | 2016-12-20 11:11:32 +0100 (Tue, 20 Dec 2016) | 6 lines
+
+Follow-up to r1775240:
+
+* buckets/ssl_buckets.c
+  (detect_renegotiate): Fix the check for supported macros such that
+   TLS_ST_SW_HELLO_REQ wins over SSL_ST_RENEGOTIATE if both are defined.
+
+------------------------------------------------------------------------
+r1775242 | stsp | 2016-12-20 10:57:08 +0100 (Tue, 20 Dec 2016) | 9 lines
+
+Fix another build problem with LibreSSL.
+
+* SConstruct: Check for OpenSSL_malloc_init() and provide the
+   SERF_HAVE_OPENSSL_MALLOC_INIT feature flag.
+
+* buckets/ssl_buckets.c
+  (init_ssl_libraries): Use SERF_HAVE_OPENSSL_MALLOC_INIT instead
+   of USE_LEGACY_OPENSSL.
+
+------------------------------------------------------------------------
+r1775241 | stsp | 2016-12-20 10:52:54 +0100 (Tue, 20 Dec 2016) | 6 lines
+
+Fix another build problem with LibreSSL.
+
+* buckets/ssl_buckets.c
+  (ssl_decrypt): Check for required macros directly instead of blindly
+   assuming they are available as of a particular version of OpenSSL.
+
+------------------------------------------------------------------------
+r1775240 | stsp | 2016-12-20 10:48:20 +0100 (Tue, 20 Dec 2016) | 6 lines
+
+Fix another build problem with LibreSSL.
+
+* buckets/ssl_buckets.c
+  (detect_renegotiate): Check for SSL_ST_RENEGOTIATE macro directly
+   instead of assuming that USE_LEGACY_OPENSSL tells the truth.
+
+------------------------------------------------------------------------
+r1775239 | stsp | 2016-12-20 10:46:27 +0100 (Tue, 20 Dec 2016) | 10 lines
+
+Check for BIO wrapper functions instead of making blind assumptions about
+their existence based on the value of the OPENSSL_VERSION_NUMBER macro.
+
+Fixes some of the build problems with LibreSSL.
+
+* SConstruct: Check for BIO_set_init and provide SERF_NO_SSL_BIO_WRAPPERS.
+
+* buckets/ssl_buckets.c: Use SERF_NO_SSL_BIO_WRAPPERS instead of
+   USE_LEGACY_OPENSSL where BIO wrappers are used.
+
+------------------------------------------------------------------------
+r1774748 | brane | 2016-12-17 13:27:08 +0100 (Sat, 17 Dec 2016) | 24 lines
+
+Make Serf compile and tests pass when the symbols OPENSSL_NO_TLSEXT
+and/or OPENSSL_NO_OCSP are defined.
+
+These symbols are used in several places to enclose conditional blocks
+of code, but some checks were missing.
+
+* buckets/ssl_buckets.c
+  (ocsp_callback): Make conditional on OPENSSL_NO_OCSP, too.
+  (serf_ssl_check_cert_status_request): Likelwise.
+
+* test/MockHTTPinC/MockHTTP_server.c
+  (ocspCreateResponse, ocspStatusCallback): Make conditional on
+   OPENSSL_NO_TLSEXT and OPENSSL_NO_OCSP.
+  (alpn_select_callback): Make conditional on OPENSSL_NO_TLSEXT.
+  (initSSLCtx): Don't use alpn_select_callback depending on OPENSSL_NO_TLSEXT.
+   Likewise for ocspStatusCallback, which also depends on OPENSSL_NO_OCSP.
+
+* test/test_ssl.c
+  (test_ss l_ocsp_response_error_and_override): Do not check for stapled
+   OCSP response depending on OPENSSL_NO_TLSEXT and OPENSSL_NO_OCSP.
+  (http11_select_protocol, http11_alpn_setup): Make conditional on
+   OPENSSL_NO_TLSEXT and OPENSSL_NO_OCSP.
+  (test_ssl_alpn_negotiate): Make test no-op depending on OPENSSL_NO_TLSEXT.
+
+------------------------------------------------------------------------
+r1774546 | brane | 2016-12-16 01:16:20 +0100 (Fri, 16 Dec 2016) | 9 lines
+
+Fix some compilation warnings.
+
+* buckets/fcgi_buckets.c (serf_fcgi_frame_refill):
+   Use APR_SIZE_T_FMT for a size-type printf argument.
+
+* buckets/hpack_buckets.c (hpack_process):
+   Remove a range check that is (a) always false and (b) was already
+   taken care of in read_hpack_int.
+
+------------------------------------------------------------------------
+r1774385 | brane | 2016-12-15 09:23:23 +0100 (Thu, 15 Dec 2016) | 7 lines
+
+Don't leak SSL certificates.
+
+* buckets/ssl_buckets.c
+  (free_ssl_cert): New pool cleanup function.
+  (serf_ssl_load_cert_file): Set up a pool cleanup for the certificate,
+   as per the (now removed) TODO comment.
+
+------------------------------------------------------------------------
+r1774378 | brane | 2016-12-15 08:17:25 +0100 (Thu, 15 Dec 2016) | 18 lines
+
+Fix some compilation warnings.
+
+* buckets/hpack_buckets.c (handle_read_entry_and_clear):
+   The precision argument for printf format "%.*" must be an int.
+
+* buckets/log_wrapper_buckets.c
+  (serf_log_wrapped_readline,
+   serf_log_wrapped_read_iovec,
+   serf_log_wrapped_read): Likewise.
+
+* buckets/ssl_buckets.c
+  (ssl_decrypt, ssl_encrypt): Likelwise.
+
+* buckets/mmap_buckets.c
+  (serf_mmap_read,
+   serf_mmap_readline,
+   serf_mmap_peek): Fix pointer types in output arguments.
+
+------------------------------------------------------------------------
+r1769851 | brane | 2016-11-15 17:04:24 +0100 (Tue, 15 Nov 2016) | 15 lines
+
+Introduce serf_connection_create3, which improves on serf_connection_create2
+by optionally avoiding blocking hostname lookups.
+
+* serf.h
+  (serf_connection_create2): Reduce docstring to a reference to
+   the documentation for serf_connection_create3.
+  (serf_connection_create3): New. Like serf_connection_create2 but
+   accepts an optional pre-cooked apr_sockaddr_t*.
+  (serf_request_bucket_request_create): Update docstring.
+
+* src/outgoing.c
+  (serf_connection_create3): Rename from serf_connection_create2 and
+   update implementation to match new prototype and semantics.
+  (serf_connection_create2): Reimplement in terms of serf_connection_create3.
+
+------------------------------------------------------------------------
+r1769841 | brane | 2016-11-15 15:29:27 +0100 (Tue, 15 Nov 2016) | 1 line
+
+Revert r1769799 due to a chicken-and-egg problem.
+------------------------------------------------------------------------
+r1769799 | brane | 2016-11-15 13:34:08 +0100 (Tue, 15 Nov 2016) | 28 lines
+
+[Reverted in r1769841.]
+
+Make sure that serf_connection_create() initializes the config store.
+
+* serf_private.h (serf__config_store_create_conn_config):
+   Introduce an optional pool parameter for temporary allocations that,
+   when provided, assures that this function will not return an error.
+   Update the docstring.
+
+* src/config_store.c (serf__config_store_create_conn_config):
+   Only create a temporary pool (and, hence, possibly return an error)
+   if an optional pool was not provided.
+
+* src/outgoing.c
+  (create_connection): New.
+   Factor out most of the contents of serf_connection_create().
+  (serf_connection_create): Call create_connection(), then initialize
+   the connection's config store.
+  (serf_connection_create2): Call create_connection() instead of
+   serf_connection_create(). Update the invocation of
+   serf__config_store_create_conn_config().
+
+* test/test_internal.c
+  (test_config_store_per_connection_different_host,
+   test_config_store_per_connection_same_host,
+   test_config_store_remove_objects):
+   Update all invocations of serf__config_store_create_conn_config().
+
+------------------------------------------------------------------------
+r1769776 | brane | 2016-11-15 11:57:03 +0100 (Tue, 15 Nov 2016) | 4 lines
+
+Make sure we don't link with the obsolete OpenSSL shipped with macOS.
+
+* SConstruct: Prepend OpenSSL include and library paths on macOS.
+
+------------------------------------------------------------------------
+r1767911 | rhuijben | 2016-11-03 16:51:00 +0100 (Thu, 03 Nov 2016) | 1 line
+
+* CHANGES: Add note explaining old revision numbers. (Thanks danielsh!)
+------------------------------------------------------------------------
+r1766650 | brane | 2016-10-26 10:51:40 +0200 (Wed, 26 Oct 2016) | 2 lines
+
+* serf.h (serf_connection_create): Fix markup typos in docstring.
+
+------------------------------------------------------------------------
+r1764937 | rhuijben | 2016-10-14 17:59:06 +0200 (Fri, 14 Oct 2016) | 1 line
+
+* README: Use https where applicable. Add github mirror.
+------------------------------------------------------------------------
+r1764936 | rhuijben | 2016-10-14 17:56:30 +0200 (Fri, 14 Oct 2016) | 1 line
+
+* README: Remove unneeded double '/'
+------------------------------------------------------------------------
+r1764932 | ivan | 2016-10-14 17:26:26 +0200 (Fri, 14 Oct 2016) | 6 lines
+
+Do not include 'zutil.h': we do not need it and documentation says that it
+should not be used by applications.
+
+* buckets/deflate_buckets.c
+  (): Remove #include &lt;zutil.h&gt;
+
+------------------------------------------------------------------------
+r1761053 | ivan | 2016-09-16 18:04:09 +0200 (Fri, 16 Sep 2016) | 8 lines
+
+Configure ZLib to use bucket allocator in deflate buckets.
+
+* buckets/deflate_buckets.c
+  (zalloc_func, zalloc_free): New.
+  (serf_bucket_deflate_create,
+   serf_bucket_deflate_compress_create): Configure zlib's alloc/free callbacks
+   to allocate memory from bucket allocator.
+
+------------------------------------------------------------------------
+r1761040 | astieger | 2016-09-16 16:36:13 +0200 (Fri, 16 Sep 2016) | 7 lines
+
+Support zlib in non-standard path on Unix
+
+Found by: Michael Osipov
+Fixes: SERF-180
+
+* SConstruct: Add ZLIB path in non-win32 case
+
+------------------------------------------------------------------------
+r1758895 | astieger | 2016-09-02 10:13:32 +0200 (Fri, 02 Sep 2016) | 1 line
+
+* NOTICE: Update copyright year
+------------------------------------------------------------------------
+r1758362 | rhuijben | 2016-08-30 13:08:02 +0200 (Tue, 30 Aug 2016) | 1 line
+
+* CHANGES: (1.3.9): Add revision.
+------------------------------------------------------------------------
+r1758193 | rhuijben | 2016-08-29 11:29:39 +0200 (Mon, 29 Aug 2016) | 1 line
+
+* CHANGES: A few more tweaks. Remove duplicated item.
+------------------------------------------------------------------------
+r1758190 | rhuijben | 2016-08-29 11:15:55 +0200 (Mon, 29 Aug 2016) | 1 line
+
+* CHANGES: Add some more 1.3.9 items in preparation for release
+------------------------------------------------------------------------
+r1757851 | rhuijben | 2016-08-26 15:42:39 +0200 (Fri, 26 Aug 2016) | 1 line
+
+Add some release magic, as used by the Subversion project.
+------------------------------------------------------------------------
+r1757829 | rhuijben | 2016-08-26 14:16:25 +0200 (Fri, 26 Aug 2016) | 3 lines
+
+* dist.sh
+  Don't error out on versions like 1.3.9-pre1.
+
+------------------------------------------------------------------------
+r1757820 | ivan | 2016-08-26 13:14:20 +0200 (Fri, 26 Aug 2016) | 5 lines
+
+* .
+  (webviewer:revision): Be friendly to TortoiseSVN and AnkhSVN users on this
+   repository by enabling smart revision number handling in log message
+   viewer.
+
+------------------------------------------------------------------------
+r1757679 | rhuijben | 2016-08-25 15:09:30 +0200 (Thu, 25 Aug 2016) | 9 lines
+
+Fix default compression level in deflate compress buckets.
+
+* buckets/deflate_buckets.c
+  (serf_deflate_wait_for_data): Pass Z_DEFAULT_COMPRESSION instead
+   of Z_DEFAULT_STRATEGY as the compression level to deflateInit2(),
+   to actually enable compression.
+
+Patch by: Evgeny Kotkov &lt;evgeny.kotkov{_AT_}visualsvn.com&gt;
+
+------------------------------------------------------------------------
+r1754722 | ivan | 2016-08-01 12:04:41 +0200 (Mon, 01 Aug 2016) | 4 lines
+
+* auth/auth_digest.c
+  (serf__validate_response_digest_auth): Remove redundant check while
+   skipping leading spaces.
+
+------------------------------------------------------------------------
+r1754720 | ivan | 2016-08-01 11:57:24 +0200 (Mon, 01 Aug 2016) | 4 lines
+
+* auth/auth_digest.c
+  (serf__handle_digest_auth): Remove redundant check while skipping leading
+   spaces.
+
+------------------------------------------------------------------------
+r1754719 | ivan | 2016-08-01 11:54:15 +0200 (Mon, 01 Aug 2016) | 13 lines
+
+Style fixes: reduce scope of local variables. Reported on dev@ list:
+https://www.mail-archive.com/dev%40serf.apache.org/msg01303.html
+
+* auth/auth.c
+* buckets/aggregate_buckets.c
+* buckets/chunk_buckets.c
+* buckets/fcgi_buckets.c
+* src/logging.c
+* test/CuTest.c
+  (dispatch_auth, serf_aggregate_read_bucket, create_chunk, fcgi_serialize,
+   serf__log_nopref, serf__log, CuSuiteDetails): Reduce scope of local
+   variables.
+
+------------------------------------------------------------------------
+r1750466 | rhuijben | 2016-06-28 12:42:56 +0200 (Tue, 28 Jun 2016) | 6 lines
+
+Handle not being defined of OPENSSL_VERSION_NUMBER as a legacy OpenSSL
+instead of as a future version.
+
+* buckets/ssl_buckets.c
+  Tweak #if.
+
+------------------------------------------------------------------------
+r1748673 | rhuijben | 2016-06-16 11:47:56 +0200 (Thu, 16 Jun 2016) | 53 lines
+
+Adapt to OpenSSL 1.1.x API changes.
+
+OpenSSL 1.1.x makes various types opaque, requiring the use of
+accessors, and rewrote the state machine describing the handshake
+process.  Of particular interest to serf are the BIO, BIO_METHOD, and
+X509_STORE types.
+
+Patch by: 'James McCoy' &lt;jamessan{_AT_}debian.org&gt;
+
+* buckets/ssl_buckets.c
+  (): New USE_LEGACY_OPENSSL define
+  (): New X509_STORE_get0_param() define for use with pre-1.1.x OpenSSL
+  (detect_renegotiate): Use SSL_get_state to check for the
+    TLS_ST_SW_HELLO_REQ state, indicating the server is starting a new
+    negotiation.
+  (bio_set_data, bio_get_data): New functions to abstract access to
+    the BIO data.
+  (bio_bucket_read, bio_bucket_write, bio_file_read, bio_file_write,
+   bio_file_gets): Use bio_get_data.
+  (bio_bucket_create): Use BIO accessor functions when available.
+  (bio_meth_bucket_new, bio_meth_file_new): New functions to abstract
+    creation of BIO_METHOD.  With OpenSSL 1.1.x or newer, the BIO_meth_*
+    functions are used to allocate a new BIO_METOD and set the
+    callbacks, otherwise the pointers to the statically defined structs
+    are used.
+  (bio_meth_free): New function.
+  (ocsp_callback): Use OCSP_response_status to get status instead of
+    accessing internals of OCSP_RESPONSE struct.  Remove unused
+    OCSP_RESPBYTES variable.
+  (ssl_decrypt): Use SSL_get_state to check for the TLS_ST_OK state,
+    indicating completed handshake.
+  (init_ssl_libraries): Exclude threading code when OpenSSL 1.1.x is in
+    use since OpenSSL now handles this appropriately without users of
+    the library setting up locking functions.
+  (ssl_need_client_cert, ssl_init_context, serf_ssl_load_cert_file,
+   serf_ssl_add_crl_from_file): Use new bio_meth_*_new functions to
+   provide the BIO_METHOD* to BIO_new().  Also use the bio_set_data
+   function to set the data for the callback.
+
+* test/MockHTTPinC/MockHTTP_server.c
+  (): New USE_OPENSSL_1_1_API define
+  (bio_set_data, bio_get_data): New functions to abstract access to
+    the BIO data.
+  (bio_apr_socket_read, bio_apr_socket_write): Use bio_get_data.
+  (bio_apr_socket_create): Use BIO accessor functions when available.
+  (bio_meth_apr_socket_new): New function to abstract creation of
+    BIO_METHOD.  With OpenSSL 1.1.x or newer, the BIO_meth_* functions
+    are used to allocate a new BIO_METOD and set the callbacks,
+    otherwise the pointer to the statically defined struct is used.
+  (initSSLCtx): Use new bio_meth_apr_socket_new function to
+   provide the BIO_METHOD* to BIO_new().  Also use the bio_set_data
+   function to set the data for the callback.
+
+------------------------------------------------------------------------
+r1748026 | lgo | 2016-06-12 18:20:34 +0200 (Sun, 12 Jun 2016) | 1 line
+
+* protocols/http2_protocol.c: Remove whitespace added in comments by accident.
+------------------------------------------------------------------------
+r1748025 | lgo | 2016-06-12 18:14:00 +0200 (Sun, 12 Jun 2016) | 9 lines
+
+Fix compiler warnings.
+
+* protocols/http2_protocol.c
+  (http2_handle_stream_window_update, http2_handle_connection_window_update):
+      A 32-bit unsigned integer shouldn't be compared &lt; 0). The existing test
+      ' &gt; 0x7FFFFFFF is sufficient. In fact, since current code is reading
+      4 bytes and then sets the top bit to 0, the situation tested for can never
+      happen.
+
+------------------------------------------------------------------------
+r1727295 | rhuijben | 2016-01-28 10:47:00 +0100 (Thu, 28 Jan 2016) | 7 lines
+
+Avoid constructing a library name with variables without
+proper escaping when SHLIBNAME is '$LIBNAME'
+
+Found by: philip
+
+* SConstruct
+  Handle special case that should have been caught by scons.
+------------------------------------------------------------------------
+r1721792 | astieger | 2015-12-27 10:57:46 +0100 (Sun, 27 Dec 2015) | 5 lines
+
+Follow-up to r1717012, fix warning on incompatible pointer type
+
+* config_store.c
+  (cleanup_store): Make key a void pointer
+
+------------------------------------------------------------------------
+r1720656 | rhuijben | 2015-12-17 22:07:28 +0100 (Thu, 17 Dec 2015) | 4 lines
+
+* buckets/chunk_buckets.c
+  (create_chunk): Avoid unneeded work. The aggregate bucket will immediately
+    set the same config when the chunk is added.
+
+------------------------------------------------------------------------
+r1720378 | rhuijben | 2015-12-16 16:43:14 +0100 (Wed, 16 Dec 2015) | 3 lines
+
+* .
+  Remove accidentally added self-referential mergeinfo.
+
+------------------------------------------------------------------------
+r1720339 | rhuijben | 2015-12-16 12:36:27 +0100 (Wed, 16 Dec 2015) | 29 lines
+
+Move *.c to src/*.c to cleanup the build root.
+
+Suggested by: gstein
+
+* .
+  (svn:ignore): Updated for recent VS changes.
+
+* SConstruct
+  Find src/*.c instead of ./*.c
+
+* src/
+  New directory. Set svn:ignore.
+
+* src/config_store.c
+* src/context.c
+* src/deprecated.c
+* src/incoming.c
+* src/logging.c
+* src/outgoing.c
+* src/pump.c
+* src/ssltunnel.c
+  Move files here.
+
+* src/outgoing_request.c
+    Move file here.
+  (serf__handle_response): Accidental early commit of a verification
+    that we are actually calling against a response instance instead
+    of some other bucket wrapping a response (which would cause a
+    segfault on the further calls)
+------------------------------------------------------------------------
+r1719435 | astieger | 2015-12-11 15:44:59 +0100 (Fri, 11 Dec 2015) | 11 lines
+
+SERF_BUCKET_SIMPLE_STRING{,_LEN} macros could not be used as function
+arguments.
+
+* serf_bucket_types.h
+  (SERF_BUCKET_SIMPLE_STRING,SERF_BUCKET_SIMPLE_STRING_LEN):
+   remove trailing semicolon
+* test/test_buckets.c
+  (test_response_bucket_read): add trailing semicolon in call.
+
+Found by: brane
+
+------------------------------------------------------------------------
+r1718956 | astieger | 2015-12-09 21:17:25 +0100 (Wed, 09 Dec 2015) | 8 lines
+
+Fix warnings on missing prototypes in test code
+
+* test/mock_buckets.c
+  (serf_mock_destroy): make static function
+* test/test_server.c
+  (test_listen_auth_http,test_listen_auth_http2): make
+  static function
+
+------------------------------------------------------------------------
+r1718038 | rhuijben | 2015-12-04 22:35:11 +0100 (Fri, 04 Dec 2015) | 8 lines
+
+Fix decoding of HTTP/2 WINDOW_UPDATE frames. Use all bytes in the right
+location instead of ignoring one byte and using another one twice.
+
+* protocols/http2_protocol.c
+  (http2_handle_stream_window_update,
+   http2_handle_connection_window_update):
+      Fix decoding and a typo in the logging.
+
+------------------------------------------------------------------------
+r1718001 | rhuijben | 2015-12-04 18:45:21 +0100 (Fri, 04 Dec 2015) | 5 lines
+
+* protocols/http2_protocol.c
+  (http2_handle_stream_window_update,
+   http2_handle_connection_window_update):
+     Handle a few more cases of overflowing the connection window.
+
+------------------------------------------------------------------------
+r1717357 | astieger | 2015-12-01 01:17:43 +0100 (Tue, 01 Dec 2015) | 8 lines
+
+Follow-up to r1717352, use apr version of snprintf
+
+* buckets/request_buckets.c
+  (serialize_data): use apr_snprintf
+* buckets/response_buckets.c
+  (serf_bucket_outgoing_response_prepare,
+  serialize_outgoing_response): same
+
+------------------------------------------------------------------------
+r1717352 | astieger | 2015-12-01 00:37:48 +0100 (Tue, 01 Dec 2015) | 9 lines
+
+In request and response buckets, replace usages of sprintf
+
+* buckets/request_buckets.c
+  (serialize_data): change to snprintf
+* buckets/response_buckets.c
+  (serf_bucket_outgoing_response_prepare,
+  serialize_outgoing_response): same
+
+
+------------------------------------------------------------------------
+r1717222 | rhuijben | 2015-11-30 11:00:45 +0100 (Mon, 30 Nov 2015) | 6 lines
+
+Following up on r1717218 and r1717219 use sprintf() instead of itoa,
+like we do in the request bucket.
+
+* buckets/response_buckets.c
+  (serialize_outgoing_response): Use sprintf to format a few ints in one step.
+
+------------------------------------------------------------------------
+r1717219 | rhuijben | 2015-11-30 10:42:23 +0100 (Mon, 30 Nov 2015) | 6 lines
+
+Following up on r1717218, add include that apr.h thinks should be standard
+on Windows, but not on other platforms.
+
+* buckets/response_buckets.c
+  (includes): Add stdlib.h
+
+------------------------------------------------------------------------
+r1717218 | rhuijben | 2015-11-30 10:38:34 +0100 (Mon, 30 Nov 2015) | 32 lines
+
+Add an outgoing response bucket for usage with our server/listening mode.
+
+Use this to hide some HTTP/1.1 requirements from server implementations.
+
+* buckets/response_buckets.c
+  (outgoing_response_t): New define.
+  (serf_bucket_outgoing_response_create,
+   serf_bucket_outgoing_response_get_headers,
+   serf_bucket_outgoing_response_prepare): New public functions.
+  (serialize_outgoing_response,
+   serf_outgoing_resp_read,
+   serf_outgoing_resp_read_iovec,
+   serf_outgoing_resp_readline,
+   serf_outgoing_resp_peek,
+   serf_outgoing_resp_set_config,
+   serf_outgoing_resp_destroy): New function.
+  (serf_bucket_type_outgoing_response): New bucket type.
+
+* incoming.c
+  (http1_enqueue_reponse): If the response is an outgoing response bucket,
+    prepare it for transfer over HTTP/1.1
+
+* serf_bucket_types.h
+  (serf_bucket_type_outgoing_response): New bucket.
+  (SERF_BUCKET_IS_OUTGOING_RESPONSE): New define.
+  (serf_bucket_outgoing_response_create,
+   serf_bucket_outgoing_response_get_headers,
+   serf_bucket_outgoing_response_prepare): New function.
+
+* test/test_server.c
+  (client_generate_response): Create proper response.
+
+------------------------------------------------------------------------
+r1717067 | rhuijben | 2015-11-29 15:14:17 +0100 (Sun, 29 Nov 2015) | 5 lines
+
+* test/MockHTTPinC/MockHTTP_server.c
+  (processServer): When actively closing the connection, do this in the most
+    proper way (just like Apache HTTPD does), to ensure the clean TCP close
+    sequence is used.
+
+------------------------------------------------------------------------
+r1717064 | rhuijben | 2015-11-29 14:27:53 +0100 (Sun, 29 Nov 2015) | 14 lines
+
+In the mock-http server: stop reading requests when we decide that we are
+going to close the connection. Reading them may tell the other side that
+we are going to process them.
+
+* test/MockHTTPinC/MockHTTP_server.c
+  (sslSocketShutdown): Add prototype.
+  (shutdown_func_t): Define.
+  (_mhClientCtx_t): Add shutdown function.
+  (socketShutdown): New function.
+  (processServer): Shutdown the connection when we decide to stop processing
+    after this request.
+  (initClientCtx): Init functions.
+  (sslSocketShutdown): New function.
+
+------------------------------------------------------------------------
+r1717053 | rhuijben | 2015-11-29 13:14:15 +0100 (Sun, 29 Nov 2015) | 4 lines
+
+* buckets/hpack_buckets.c
+  (serialize_ensure_buffer): Following up on r1717039, r1717045 re-enable
+    support for headers with a compressed size of over 1024 bytes.
+
+------------------------------------------------------------------------
+r1717045 | rhuijben | 2015-11-29 12:51:38 +0100 (Sun, 29 Nov 2015) | 4 lines
+
+* buckets/hpack_buckets.c
+  (serialize): Following up on r1717039, set the right last value to make sure
+    table shrinking cleans out the right data.
+
+------------------------------------------------------------------------
+r1717039 | rhuijben | 2015-11-29 12:43:45 +0100 (Sun, 29 Nov 2015) | 10 lines
+
+With the Subversion test suite now completely running over HTTP/2, improve
+the final step of hpack (header) encoding: dynamic table compression.
+
+* buckets/hpack_buckets.c
+  (serf_hpack_table_t): Remove unused nr of item variables.
+  (serialize_ensure_buffer): New function.
+  (serialize): Improve buffer usage by calling serialize_ensure_buffer
+    in a few places instead of allocating to much up front. Store indexable
+    entries in the table's local to remote list after writing.
+
+------------------------------------------------------------------------
+r1717031 | rhuijben | 2015-11-29 12:09:44 +0100 (Sun, 29 Nov 2015) | 18 lines
+
+With the config store available we now have a location to store ssl session
+state for resumption keyed by host+portnumber. Use this to optimize creating
+additional ssl sessions (and in case of http/1.1 resetting connections),
+within a single serf context.
+
+* buckets/ssl_buckets.c
+  (ssl_handshake): Check the config to see if we have a cached session.
+
+* config_store.c
+  (ssl_session_data): New struct.
+  (SERF_CONFIG__SSL_SESSION): New config value.
+  (serf__config_store_set_ssl_session,
+   serf__config_store_get_ssl_session): New function.
+
+* serf_private.h
+  (serf__config_store_set_ssl_session,
+   serf__config_store_get_ssl_session): New function.
+
+------------------------------------------------------------------------
+r1717019 | rhuijben | 2015-11-29 02:09:26 +0100 (Sun, 29 Nov 2015) | 7 lines
+
+* protocols/http2_protocol.c
+  (http2_write_data): Add prototype.
+  (http2_handle_connection_window_update): Start writing when window size was
+    0.
+  (http2_handle_settings): Recalculate connection window size on initial
+    window size change.
+
+------------------------------------------------------------------------
+r1717017 | rhuijben | 2015-11-29 01:45:24 +0100 (Sun, 29 Nov 2015) | 6 lines
+
+* protocols/http2_protocol.c
+  (http2_write_data): Return APR_SUCCESS when we can't write anything because
+    the connection window is 0.
+  (http2_outgoing_write,
+   http2_incoming_write): Use pump directly.
+
+------------------------------------------------------------------------
+r1717016 | rhuijben | 2015-11-29 01:24:31 +0100 (Sun, 29 Nov 2015) | 13 lines
+
+* buckets/split_buckets.c
+  (serf_split_destroy): Clear some values.
+
+* protocols/http2_protocol.c
+  (http2_write_data): Clear some state.
+  (serf_http2__ensure_writable): Fix edge case to avoid endless loop.
+
+* protocols/http2_stream.c
+  (serf_http2__stream_pre_cleanup): Properly clear data_tail.
+  (serf_http2__stream_cleanup): Really stop destroying data_tail.
+  (stream_send_data): Mark stream closed when done. Ensure write again in
+    all cases where we have to write again.
+
+------------------------------------------------------------------------
+r1717014 | rhuijben | 2015-11-29 01:05:37 +0100 (Sun, 29 Nov 2015) | 13 lines
+
+* outgoing.c
+  (reset_connection,
+   serf_connection_close): Only call pre_teardown if the protocol baton is set.
+
+* test/test_internal.c
+  (test_config_store_per_context,
+   test_config_store_per_connection_different_host,
+   test_config_store_per_connection_same_host,
+   test_config_store_error_handling,
+   test_config_store_remove_objects):
+     Following up on r1717012, update caller.
+     (Let me remind you how I love SCons for defaulting to ignore this warning
+      on Windows)
+------------------------------------------------------------------------
+r1717013 | rhuijben | 2015-11-29 00:58:58 +0100 (Sun, 29 Nov 2015) | 37 lines
+
+Add a protocol callback for a cleanup step before the requests are done.
+This allows cleaning up writer state and thereby avoids segfaults when
+buckets are destroyed out of order.
+
+This should solve a segfault/abort() in the Subversion over H2 issue I'm
+debugging.
+
+* incoming.c
+  (serf_incoming_set_framing_type,
+   serf_incoming_create2): Hook pre teardown.
+
+* outgoing.c
+  (reset_connection,
+   serf_connection_create,
+   serf_connection_close,
+   serf_connection_set_framing_type): Hook pre teardown.
+
+* protocols/http2_protocol.c
+  (http2_outgoing_pre_teardown,
+   http2_incoming_pre_teardown): New prototypes.
+  (serf__http2_protocol_init,
+   serf__http2_protocol_init_server): Hook teardown.
+  (http2_outgoing_pre_teardown,
+   http2_incoming_pre_teardown): New function.
+
+* protocols/http2_protocol.h
+  (serf_http2__stream_pre_cleanup): New function.
+
+* protocols/http2_stream.c
+  (serf_http2__stream_pre_cleanup): New function. Destroy data tail here
+    instead of...
+  (serf_http2__stream_cleanup): ... here.
+
+* serf_private.h
+  (serf_incoming_t,
+   serf_connection_t): New callback.
+
+------------------------------------------------------------------------
+r1717012 | rhuijben | 2015-11-29 00:44:26 +0100 (Sun, 29 Nov 2015) | 48 lines
+
+Make the configuration store use a serf allocator instead of pools for its
+data to allow clearing out values without a (very slow) memory leak.
+
+* config_store.c
+  (serf__config_hdr_t): Remove pool.
+  (config_free_cb_t): New typedef.
+  (config_entry_t): Add free callback.
+  (create_config_hdr): Use allocator.
+  (add_or_replace_entry): Allow storing how to free value.
+  (add_or_replace_entry): Handle free support.
+  (config_set_object): New helper function, extracted from
+    serf__config_set_object.
+  (cleanup_hdr,
+   cleanup_store): New function.
+  (serf__config_store_init): Create allocator. Hook explicit cleanup.
+  (serf__config_store_create_ctx_config,
+   serf__config_store_create_conn_config,
+   serf__config_store_create_client_config,
+   serf__config_store_create_listener_config): Remove out_pool, which is only
+     partially used as result pool. Use the context pool directly.
+  (serf_config_set_stringc): Use config_set_object and declare how to free.
+  (serf_config_set_stringf): Add scratch_pool argument. Update caller.
+  (serf_config_set_object): Move some code to config_set_object.
+
+* context.c
+  (serf_context_create_ex): Update caller.
+
+* incoming.c
+  (serf_incoming_create2,
+   serf_listener_create): Update caller.
+
+* outgoing.c
+  (serf_connection_create2): Update caller.
+
+* pump.c
+  (serf_pump__store_ipaddresses_in_config): Update caller.
+
+* serf.h
+  (serf_config_set_stringf): Add argument.
+
+* serf_private.h
+  (serf_config_t): Store allocator instead of conn_pool.
+  (serf__config_store_t): Store allocator. Update comment.
+  (serf__config_store_create_conn_config,
+   serf__config_store_create_client_config,
+   serf__config_store_create_listener_config,
+   serf__config_store_create_ctx_config): Remove argument.
+
+------------------------------------------------------------------------
+r1717009 | rhuijben | 2015-11-28 23:59:00 +0100 (Sat, 28 Nov 2015) | 9 lines
+
+Resolve some edge cases in the split buckets in case apr_size_t isn't
+64 bit while the total amount of data to be split is.
+
+* buckets/split_buckets.c
+  (serf_split_read,
+   serf_split_read_iovec,
+   serf_split_peek): Handle min_size SERF_READ_ALL_AVAIL special.
+  (serf_split_get_remaining): Easy out at eof.
+
+------------------------------------------------------------------------
+r1717007 | rhuijben | 2015-11-28 23:26:18 +0100 (Sat, 28 Nov 2015) | 9 lines
+
+When sending a bit of data, start by clearing the remaining data and
+only set it when there is still remaining after processing. This
+solves one case where data remained queued, causing an abort() via
+double free.
+
+* protocols/http2_stream.c
+  (stream_send_data): Never send and keep the same data tail. Always
+    ensure that we need to write if we leave a tail.
+
+------------------------------------------------------------------------
+r1716898 | astieger | 2015-11-27 17:54:57 +0100 (Fri, 27 Nov 2015) | 5 lines
+
+Follow-up to r1704160, add va_end call to match va_start
+
+* test/MockHTTPinC/MockHTTP.c
+  (appendErrMessage): add matching va_end() call
+
+------------------------------------------------------------------------
+r1716896 | astieger | 2015-11-27 17:44:15 +0100 (Fri, 27 Nov 2015) | 8 lines
+
+Fix format warnings when printing apr_size_t with %d
+
+* buckets/log_wrapper_buckets.c
+  (serf_log_wrapped_readline,serf_log_wrapped_read_iovec,
+  serf_log_wrapped_read): use APR_SIZE_T_FMT
+* buckets/ssl_buckets.c
+  (bio_bucket_read,ssl_decrypt,ssl_encrypt): same
+
+------------------------------------------------------------------------
+r1716857 | rhuijben | 2015-11-27 13:03:42 +0100 (Fri, 27 Nov 2015) | 8 lines
+
+Improve the handling of some early-eof scenarios in the split bucket.
+
+* buckets/split_buckets.c
+  (serf_split_read,
+   serf_split_read_iovec): Handle EOF consistently. Either with an error in
+     case of promissing more data earlier on, or by fixing this bucket and
+     providing the right kind of EOF.
+
+------------------------------------------------------------------------
+r1716855 | rhuijben | 2015-11-27 12:59:30 +0100 (Fri, 27 Nov 2015) | 11 lines
+
+Remove more magic iovec constants, by using our new define in serf_private.h.
+(without actually affecting the code on all known platforms)
+
+* buckets/chunk_buckets.c
+  (includes): Add serf_private.h.
+  (create_chunk): Create a standard number of buckets, but never more than
+     APR_MAX_IOVEC_SIZE.
+
+* buckets/ssl_buckets.c
+  (ssl_encrypt): Use standard number of buckets.
+
+------------------------------------------------------------------------
+r1716854 | rhuijben | 2015-11-27 12:56:41 +0100 (Fri, 27 Nov 2015) | 14 lines
+
+Move the stop-writing handling (for ssl negotiate states) to the connections,
+to avoid having to look at these in each protocol case.
+
+* incoming.c
+  (serf__process_client): Introduce here.
+
+* outgoing.c
+  (read_from_connection): Move from here...
+  (process_connection): ... to here.
+
+* protocols/http2_protocol.c
+  (http2_outgoing_read,
+   http2_incoming_read): Remove here.
+
+------------------------------------------------------------------------
+r1716821 | rhuijben | 2015-11-27 11:08:47 +0100 (Fri, 27 Nov 2015) | 4 lines
+
+* .editorconfig
+  Add editor configuration file handled by a growing set
+  of editors.
+
+------------------------------------------------------------------------
+r1716746 | astieger | 2015-11-26 18:17:24 +0100 (Thu, 26 Nov 2015) | 4 lines
+
+Follow-up to r1714682, ignore generated serf_httpd
+
+* test: ignore serf_httpd
+
+------------------------------------------------------------------------
+r1716726 | rhuijben | 2015-11-26 16:55:10 +0100 (Thu, 26 Nov 2015) | 46 lines
+
+Make the auth code requeue the same request instance when another request is
+needed to get the required response.
+
+Serf 1.3 requeued a different request and destroyed the existing one, which
+makes it impossible for end-user applications to perform further operations
+on a request. This patch fixes that behavior by rerouting the existing
+response to a new request instead.
+
+* auth/auth.c
+  (serf__handle_auth_response): Use bool. Just handle the headers and let
+    requeue the request. This avoids work in case we can just reset the
+    stream. Mark handling done to avoid processing every time during body
+    handling.
+
+* outgoing_request.c
+  (clean_resp): Add comment.
+  (serf__handle_response): Update caller.
+  (create_request): Use bool arguments.
+  (serf_connection_request_create): Update caller.
+  (insert_priority_request): New function, extracted from...
+  (priority_request_create): ... here.
+  (discard_response_handler): New function.
+  (serf__request_requeue): Rewrite as...
+  (serf_connection__request_requeue): ... this.
+
+* protocols/http2_stream.c
+  (serf_http2_stream_data_t): Track resetted.
+  (serf_http2__stream_create): Init value.
+  (serf_http2__stream_reset): We reset only once.
+  (serf_http2__stream_cancel_request): Handle request updating and
+    the remaining work as reset.
+  (stream_response_eof): Don't return EOF on stream reset, as handlers
+    will commonly report that as reading errors. Just keep returning
+    EAGAIN.
+  (serf_http2__stream_processor): Handle switching requests and
+    resetting requests.
+
+* serf_private.h
+  (IOV_MAX): Remove unused variable.
+  (SERF__STD_IOV_COUNT): Use APR_MAX_IOVEC_SIZE instead of IOV_MAX.
+  (serf_request_t): Add variable. Use bool for a few others.
+  (serf__handle_auth_response): Use bool for output argument.
+
+  (serf__request_requeue): Remove function.
+  (serf_connection__request_requeue): New function.
+
+------------------------------------------------------------------------
+r1716725 | rhuijben | 2015-11-26 16:50:04 +0100 (Thu, 26 Nov 2015) | 3 lines
+
+* protocols/http2_protocol.c
+  (http2_process): Expect the right payload size for a reset frame.
+
+------------------------------------------------------------------------
+r1716724 | rhuijben | 2015-11-26 16:49:05 +0100 (Thu, 26 Nov 2015) | 8 lines
+
+Stop using IOV_MAX. Use our own define instead.
+
+* protocols/fcgi_protocol.c
+  (fcgi_bucket_processor): Tweak read.
+
+* protocols/fcgi_stream.c
+  (serf_fcgi__stream_processor): Tweak read.
+
+------------------------------------------------------------------------
+r1716715 | rhuijben | 2015-11-26 16:04:07 +0100 (Thu, 26 Nov 2015) | 3 lines
+
+* buckets/serf-buckets.natvis
+  Map a few more bucket types in this debugger visualizer file.
+
+------------------------------------------------------------------------
+r1716711 | rhuijben | 2015-11-26 15:50:54 +0100 (Thu, 26 Nov 2015) | 7 lines
+
+Make the http/1.1 request reading code properly changing the current
+request from outside the loop. This feature will be used to tweak the
+auth handling to re-use the existing request.
+
+* outgoing.c
+  (read_from_connection): Load request in the loop.
+
+------------------------------------------------------------------------
+r1716707 | rhuijben | 2015-11-26 15:45:10 +0100 (Thu, 26 Nov 2015) | 6 lines
+
+Following up on r1699995, which made the linebuffers consistently '\0'
+terminated, remove some unneeded work.
+
+* buckets/dechunk_buckets.c
+  (wait_for_chunk): Remove work already done by the linebuffer.
+
+------------------------------------------------------------------------
+r1716701 | rhuijben | 2015-11-26 15:37:58 +0100 (Thu, 26 Nov 2015) | 9 lines
+
+Make the response bucket properly read trailers even when the caller uses
+other read methods than the normal read: the iovec and readline versions
+both suffered from this problem.
+
+* buckets/response_buckets.c
+  (serf_response_readline,
+   serf_response_read_iovec): Implement trailer support in the same
+     way the normal read supports this.
+
+------------------------------------------------------------------------
+r1716592 | rhuijben | 2015-11-26 11:07:47 +0100 (Thu, 26 Nov 2015) | 18 lines
+
+Implement basic windowing support for http/2. For now just use a constant
+window for the connection and each stream and update it when it falls under
+a treshold.
+
+* protocols/http2_protocol.c
+  (serf_http2_protocol_t): Add some vars.
+  (http2_send_window_update): New function.
+  (serf__http2_protocol_init,
+   serf__http2_protocol_init_server): Initialize dynamic window state.
+     Use http2_send_window_update instead of hardcoded window update.
+  (http2_process): Update window when needed.
+
+* protocols/http2_protocol.h
+  (serf_http2_stream_t): Add some vars.
+
+* protocols/http2_stream.c
+  (serf_http2__stream_create): Initialize dynamic window state.
+
+------------------------------------------------------------------------
+r1716532 | astieger | 2015-11-25 21:15:39 +0100 (Wed, 25 Nov 2015) | 6 lines
+
+Follow-up to r1714774, fix warning on declaration and initialisation
+of serf_bucket_type__fcgi_params_decode as extern 
+
+* buckets/fcgi_buckets.c
+  (serf_bucket_type__fcgi_params_decode): remove extern
+
+------------------------------------------------------------------------
+r1716510 | astieger | 2015-11-25 20:07:58 +0100 (Wed, 25 Nov 2015) | 6 lines
+
+Follow-up to r1712557, fix warning on missing prototope of
+serf__copy_iovec
+
+* buckets/copy_buckets.c: include serf_private.h
+
+
+------------------------------------------------------------------------
+r1716415 | astieger | 2015-11-25 15:02:16 +0100 (Wed, 25 Nov 2015) | 5 lines
+
+Follow-up to r1716165, fix implicit declaration of abort() in
+serf_connection_request_prioritize
+
+outgoing_request.c: include stdlib.h
+
+------------------------------------------------------------------------
+r1716407 | rhuijben | 2015-11-25 14:46:44 +0100 (Wed, 25 Nov 2015) | 6 lines
+
+* buckets/prefix_buckets.c
+  (read_prefix): Return empty read error on empty read.
+  (serf_prefix_read,
+   serf_prefix_read_iovec,
+   serf_prefix_peek): And handle that as return success here.
+
+------------------------------------------------------------------------
+r1716371 | rhuijben | 2015-11-25 13:27:42 +0100 (Wed, 25 Nov 2015) | 23 lines
+
+Remove a lot of bucket reading from the http2 processing by trying to read
+a headers bucket before reading the separate lines to fill it.
+
+Before this patch we usually created a header bucket and then read it into
+another header bucket.
+
+* buckets/barrier_buckets.c
+  (serf_barrier_read_bucket): New function.
+  (serf_bucket_type_barrier): Resolve TODO.
+
+* buckets/hpack_buckets.c
+  (serf_hpack_decode_read,
+   serf_hpack_decode_peek): Remove unneeded check.
+  (serf_hpack_decode_read_bucket): New function.
+
+* buckets/response_buckets.c
+  (response_context_t): Introduce new substates, to allow skipping
+    some parts of processing.
+  (serf_bucket_response_create,
+   serf_bucket_response_get_headers): Initialize headers on demand.
+  (run_machine): Handle the first and last headers read operations
+      as specific states to allow reading the headers as a bucket.
+
+------------------------------------------------------------------------
+r1716352 | rhuijben | 2015-11-25 11:56:57 +0100 (Wed, 25 Nov 2015) | 24 lines
+
+Following up on r1716346, fix hpack decoding to work like the other decode buckets
+and don't return eof from the processing when the bucket is not done yet. Remove
+unneeded callback as callers just want to read the headers.
+
+* buckets/hpack_buckets.c
+  (serf_hpack_decode_ctx_t): Remove callback.
+  (serf__bucket_hpack_decode_create): Remove two arguments.
+  (handle_read_entry_and_clear): Remove callback handling.
+  (hpack_process): Return success on EOF.
+
+* protocols/fcgi_protocol.c
+  (fcgi_process): Handle empty read.
+
+* protocols/http2_buckets.h
+  (serf__bucket_hpack_decode_create): Remove arguments. Tweak comment.
+
+* protocols/http2_protocol.c
+  (http2_process): Handle empty read.
+  (http2_process): Update caller.
+
+* protocols/http2_stream.c
+  (stream_promise_item): Remove function.
+  (serf_http2__stream_handle_hpack): Update caller.
+
+------------------------------------------------------------------------
+r1716346 | rhuijben | 2015-11-25 11:35:59 +0100 (Wed, 25 Nov 2015) | 26 lines
+
+Don't retry reads of length 0 with success status until the end of time, while
+reading from another bucket. Just return a read of 0 itself.
+
+* buckets/fcgi_buckets.c
+  (serf__bucket_fcgi_unframe_read_info): Return special error here.
+  (serf_fcgi_unframe_read,
+   serf_fcgi_unframe_peek): And fold it into success here.
+
+* buckets/hpack_buckets.c
+  (read_hpack_int): Return special error here...
+  (hpack_read_bytes): ... and here.
+  (serf_hpack_decode_read,
+   serf_hpack_decode_peek): And fold it into success here.
+
+* buckets/http2_frame_buckets.c
+  (serf__bucket_http2_unframe_read_info): Return special error here.
+  (serf_http2_unframe_read,
+   serf_http2_unframe_read_iovec,
+   serf_http2_unframe_peek): And fold it into success here.
+
+* context.c
+  (serf_error_string): Print new error.
+
+* serf.h
+  (SERF_ERROR_EMPTY_READ): Declare new error.
+
+------------------------------------------------------------------------
+r1716293 | rhuijben | 2015-11-25 03:16:14 +0100 (Wed, 25 Nov 2015) | 4 lines
+
+* buckets/http2_frame_buckets.c
+  (serf_http2_frame_read_iovec): Fix indentation.
+  (serf_http2_frame_set_config): Forward config to stream.
+
+------------------------------------------------------------------------
+r1716290 | rhuijben | 2015-11-25 02:29:14 +0100 (Wed, 25 Nov 2015) | 11 lines
+
+* buckets/fcgi_buckets.c
+  (serf__bucket_fcgi_unframe_read_info): Retry reading when possible.
+    Handle more status values on record completely read.
+
+* buckets/http2_frame_buckets.c
+  (serf__bucket_http2_unframe_read_info): Stop folding several status
+    values to APR_SUCCESS.
+
+* protocols/http2_buckets.h
+  (serf__bucket_hpack_decode_create): Update documentation.
+
+------------------------------------------------------------------------
+
+...</pre></div>
+
+</body>
+</html>

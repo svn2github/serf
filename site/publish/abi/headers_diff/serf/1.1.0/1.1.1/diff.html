@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="serf, header, diff" />
+    <meta name="description" content="Diff for header files between 1.1.0 and 1.1.1 versions of serf" />
+    <link rel="stylesheet" type="text/css" href="../../../../css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../css/headers_diff.css" />
+    
+    
+    <title>
+        serf: headers diff between 1.1.0 and 1.1.1 versions
+    </title>
+    
+    </head>
+
+<body>
+<table width='100%' cellpadding='0' cellspacing='0'><tr><td><table cellpadding='0' cellspacing='0'><tr><td align='center'><h1 class='tool'><a title='ABI tracker for serf' href='../../../../timeline/serf/index.html' class='tool'>ABI<br/>Tracker</a></h1></td><td width='30px;'></td><td><h1>(serf)</h1></td></tr></table><hr/>
+<br/>
+<br/>
+<h1>Headers diff: <span class='version'>1.1.0</span> vs <span class='version'>1.1.1</span></h1><br/><br/> 
+  <table class='diff_tbl' border="0" cellpadding="0" cellspacing="0"> 
+  <tr id="part-1" bgcolor="orange"><th>&nbsp;serf.h (1.1.0)&nbsp;</th><th> </th><th>&nbsp;serf.h (1.1.1)&nbsp;</th></tr> 
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr id="part-1" class="change" ><th><small>skipping to change at</small><a href="#part-1"><em> line 85<span class="hide"> &para;</span></em></a></th><th> </th><th><small>skipping to change at</small><a href="#part-1"><em> line 85<span class="hide"> &para;</span></em></a></th></tr>
+      <tr><td class="left">#define SERF_ERROR_WAIT_CONN (APR_OS_START_USERERR + SERF_ERROR_RANGE + 3)</td><td> </td><td class="right">#define SERF_ERROR_WAIT_CONN (APR_OS_START_USERERR + SERF_ERROR_RANGE + 3)</td></tr>
+      <tr><td class="left">/* This code is for when something went wrong during deflating compressed</td><td> </td><td class="right">/* This code is for when something went wrong during deflating compressed</td></tr>
+      <tr><td class="left"> * data e.g. a CRC error. */</td><td> </td><td class="right"> * data e.g. a CRC error. */</td></tr>
+      <tr><td class="left">#define SERF_ERROR_DECOMPRESSION_FAILED (APR_OS_START_USERERR + \</td><td> </td><td class="right">#define SERF_ERROR_DECOMPRESSION_FAILED (APR_OS_START_USERERR + \</td></tr>
+      <tr><td class="left">                                             SERF_ERROR_RANGE + 4)</td><td> </td><td class="right">                                             SERF_ERROR_RANGE + 4)</td></tr>
+      <tr><td class="left">/* This code is for when a response received from a http server is not in</td><td> </td><td class="right">/* This code is for when a response received from a http server is not in</td></tr>
+      <tr><td class="left"> * http-compliant syntax. */</td><td> </td><td class="right"> * http-compliant syntax. */</td></tr>
+      <tr><td class="left">#define SERF_ERROR_BAD_HTTP_RESPONSE (APR_OS_START_USERERR + \</td><td> </td><td class="right">#define SERF_ERROR_BAD_HTTP_RESPONSE (APR_OS_START_USERERR + \</td></tr>
+      <tr><td class="left">                                             SERF_ERROR_RANGE + 5)</td><td> </td><td class="right">                                             SERF_ERROR_RANGE + 5)</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr id="diff0001"></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">/* SSL certificates related errors */</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">#define SERF_ERROR_SSL_CERT_FAILED (APR_OS_START_USERERR + SERF_ERROR_RANGE</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> + 70)</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"></span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">/* SSL communications related errors */</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">#define SERF_ERROR_SSL_COMM_FAILED (APR_OS_START_USERERR + SERF_ERROR_RANGE</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> + 71)</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock">                                                                           </td></tr>
+      <tr><td class="left">/* General authentication related errors */</td><td> </td><td class="right">/* General authentication related errors */</td></tr>
+      <tr><td class="left">#define SERF_ERROR_AUTHN_FAILED (APR_OS_START_USERERR + SERF_ERROR_RANGE + 
+90)</td><td> </td><td class="right">#define SERF_ERROR_AUTHN_FAILED (APR_OS_START_USERERR + SERF_ERROR_RANGE + 
+90)</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/* None of the available authn mechanisms for the request are supported */</td><td> </td><td class="right">/* None of the available authn mechanisms for the request are supported */</td></tr>
+      <tr><td class="left">#define SERF_ERROR_AUTHN_NOT_SUPPORTED (APR_OS_START_USERERR + SERF_ERROR_R
+ANGE + 91)</td><td> </td><td class="right">#define SERF_ERROR_AUTHN_NOT_SUPPORTED (APR_OS_START_USERERR + SERF_ERROR_R
+ANGE + 91)</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/* Authn was requested by the server but the header lacked some attribute  
+*/</td><td> </td><td class="right">/* Authn was requested by the server but the header lacked some attribute  
+*/</td></tr>
+      <tr><td class="left">#define SERF_ERROR_AUTHN_MISSING_ATTRIBUTE (APR_OS_START_USERERR + SERF_ERR
+OR_RANGE + 92)</td><td> </td><td class="right">#define SERF_ERROR_AUTHN_MISSING_ATTRIBUTE (APR_OS_START_USERERR + SERF_ERR
+OR_RANGE + 92)</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/* Authentication handler initialization related errors */</td><td> </td><td class="right">/* Authentication handler initialization related errors */</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr id="part-2" class="change" ><th><small>skipping to change at</small><a href="#part-2"><em> line 1019<span class="hide"> &para;</span></em></a></th><th> </th><th><small>skipping to change at</small><a href="#part-2"><em> line 1025<span class="hide"> &para;</span></em></a></th></tr>
+      <tr><td class="left">void serf_debug__closed_conn(</td><td> </td><td class="right">void serf_debug__closed_conn(</td></tr>
+      <tr><td class="left">    serf_bucket_alloc_t *allocator);</td><td> </td><td class="right">    serf_bucket_alloc_t *allocator);</td></tr>
+      <tr><td class="left">void serf_debug__bucket_destroy(</td><td> </td><td class="right">void serf_debug__bucket_destroy(</td></tr>
+      <tr><td class="left">    const serf_bucket_t *bucket);</td><td> </td><td class="right">    const serf_bucket_t *bucket);</td></tr>
+      <tr><td class="left">void serf_debug__bucket_alloc_check(</td><td> </td><td class="right">void serf_debug__bucket_alloc_check(</td></tr>
+      <tr><td class="left">    serf_bucket_alloc_t *allocator);</td><td> </td><td class="right">    serf_bucket_alloc_t *allocator);</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/* Version info */</td><td> </td><td class="right">/* Version info */</td></tr>
+      <tr><td class="left">#define SERF_MAJOR_VERSION 1</td><td> </td><td class="right">#define SERF_MAJOR_VERSION 1</td></tr>
+      <tr><td class="left">#define SERF_MINOR_VERSION 1</td><td> </td><td class="right">#define SERF_MINOR_VERSION 1</td></tr>
+      <tr id="diff0002"></tr>
+      <tr><td class="lblock">#define SERF_PATCH_VERSION <span class="delete">0</span></td><td> </td><td class="rblock">#define SERF_PATCH_VERSION <span class="insert">1</span></td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/* Version number string */</td><td> </td><td class="right">/* Version number string */</td></tr>
+      <tr><td class="left">#define SERF_VERSION_STRING APR_STRINGIFY(SERF_MAJOR_VERSION) "." \</td><td> </td><td class="right">#define SERF_VERSION_STRING APR_STRINGIFY(SERF_MAJOR_VERSION) "." \</td></tr>
+      <tr><td class="left">                            APR_STRINGIFY(SERF_MINOR_VERSION) "." \</td><td> </td><td class="right">                            APR_STRINGIFY(SERF_MINOR_VERSION) "." \</td></tr>
+      <tr><td class="left">                            APR_STRINGIFY(SERF_PATCH_VERSION)</td><td> </td><td class="right">                            APR_STRINGIFY(SERF_PATCH_VERSION)</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr><td class="left"> * Check at compile time if the Serf version is at least a certain</td><td> </td><td class="right"> * Check at compile time if the Serf version is at least a certain</td></tr>
+      <tr><td class="left"> * level.</td><td> </td><td class="right"> * level.</td></tr>
+      <tr><td class="left"> * @param major The major version component of the version checked</td><td> </td><td class="right"> * @param major The major version component of the version checked</td></tr>
+
+     <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+     <tr id="end" bgcolor="gray"><th colspan="5" align="center">&nbsp;End of changes. 2 change blocks.&nbsp;</th></tr>
+     <tr class="stats"><th><i>1 lines changed or deleted</i></th><th><i> </i></th><th><i>9 lines changed or added</i></th></tr>
+     <tr><td colspan="5" align="center" class="small"></td></tr>
+   </table>
+   <br/><br/>
+ 
+  <table class='diff_tbl' border="0" cellpadding="0" cellspacing="0"> 
+  <tr id="part-1" bgcolor="orange"><th>&nbsp;serf_private.h (1.1.0)&nbsp;</th><th> </th><th>&nbsp;serf_private.h (1.1.1)&nbsp;</th></tr> 
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr id="part-1" class="change" ><th><small>skipping to change at</small><a href="#part-1"><em> line 206<span class="hide"> &para;</span></em></a></th><th> </th><th><small>skipping to change at</small><a href="#part-1"><em> line 206<span class="hide"> &para;</span></em></a></th></tr>
+      <tr><td class="left">    serf_bucket_t *ostream_head;</td><td> </td><td class="right">    serf_bucket_t *ostream_head;</td></tr>
+      <tr><td class="left">    serf_bucket_t *ostream_tail;</td><td> </td><td class="right">    serf_bucket_t *ostream_tail;</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">    /* Aggregate bucket used to send the CONNECT request. */</td><td> </td><td class="right">    /* Aggregate bucket used to send the CONNECT request. */</td></tr>
+      <tr><td class="left">    serf_bucket_t *ssltunnel_ostream;</td><td> </td><td class="right">    serf_bucket_t *ssltunnel_ostream;</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">    /* The list of active requests. */</td><td> </td><td class="right">    /* The list of active requests. */</td></tr>
+      <tr><td class="left">    serf_request_t *requests;</td><td> </td><td class="right">    serf_request_t *requests;</td></tr>
+      <tr><td class="left">    serf_request_t *requests_tail;</td><td> </td><td class="right">    serf_request_t *requests_tail;</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr id="diff0001"></tr>
+      <tr><td class="lblock">    <span class="delete">/* The list of requests we're holding on to because we're going to</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">     * reset the connection soon.</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">     */</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">    serf_request_t *hold_requests;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock"><span class="delete">    serf_request_t *hold_requests_tail;</span></td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="lblock">                                                                           </td><td> </td><td class="rblock"></td></tr>
+      <tr><td class="left">    struct iovec vec[IOV_MAX];</td><td> </td><td class="right">    struct iovec vec[IOV_MAX];</td></tr>
+      <tr><td class="left">    int vec_len;</td><td> </td><td class="right">    int vec_len;</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">    serf_connection_setup_t setup;</td><td> </td><td class="right">    serf_connection_setup_t setup;</td></tr>
+      <tr><td class="left">    void *setup_baton;</td><td> </td><td class="right">    void *setup_baton;</td></tr>
+      <tr><td class="left">    serf_connection_closed_t closed;</td><td> </td><td class="right">    serf_connection_closed_t closed;</td></tr>
+      <tr><td class="left">    void *closed_baton;</td><td> </td><td class="right">    void *closed_baton;</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">    /* Max. number of outstanding requests. */</td><td> </td><td class="right">    /* Max. number of outstanding requests. */</td></tr>
+      <tr><td class="left">    unsigned int max_outstanding_requests;</td><td> </td><td class="right">    unsigned int max_outstanding_requests;</td></tr>
+
+     <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+     <tr id="end" bgcolor="gray"><th colspan="5" align="center">&nbsp;End of changes. 1 change blocks.&nbsp;</th></tr>
+     <tr class="stats"><th><i>6 lines changed or deleted</i></th><th><i> </i></th><th><i>0 lines changed or added</i></th></tr>
+     <tr><td colspan="5" align="center" class="small"></td></tr>
+   </table>
+   <br/><div style='width:100%;' align='left' class='small'>This html diff was produced by rfcdiff 1.41.The latest version is available from <a href='http://tools.ietf.org/tools/rfcdiff/'>http://tools.ietf.org/tools/rfcdiff/</a></div>
+</td></tr></table>
+</body>
+</html>

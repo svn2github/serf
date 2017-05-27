@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="serf, header, diff" />
+    <meta name="description" content="Diff for header files between 0.2.0 and 0.3.0 versions of serf" />
+    <link rel="stylesheet" type="text/css" href="../../../../css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../css/headers_diff.css" />
+    
+    
+    <title>
+        serf: headers diff between 0.2.0 and 0.3.0 versions
+    </title>
+    
+    </head>
+
+<body>
+<table width='100%' cellpadding='0' cellspacing='0'><tr><td><table cellpadding='0' cellspacing='0'><tr><td align='center'><h1 class='tool'><a title='ABI tracker for serf' href='../../../../timeline/serf/index.html' class='tool'>ABI<br/>Tracker</a></h1></td><td width='30px;'></td><td><h1>(serf)</h1></td></tr></table><hr/>
+<br/>
+<br/>
+<h1>Headers diff: <span class='version'>0.2.0</span> vs <span class='version'>0.3.0</span></h1><br/><br/> 
+  <table class='diff_tbl' border="0" cellpadding="0" cellspacing="0"> 
+  <tr id="part-1" bgcolor="orange"><th>&nbsp;serf.h (0.2.0)&nbsp;</th><th> </th><th>&nbsp;serf.h (0.3.0)&nbsp;</th></tr> 
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr id="part-1" class="change" ><th><small>skipping to change at</small><a href="#part-1"><em> line 703<span class="hide"> &para;</span></em></a></th><th> </th><th><small>skipping to change at</small><a href="#part-1"><em> line 703<span class="hide"> &para;</span></em></a></th></tr>
+      <tr><td class="left">     * APR_EAGAIN will never be returned.</td><td> </td><td class="right">     * APR_EAGAIN will never be returned.</td></tr>
+      <tr><td class="left">     */</td><td> </td><td class="right">     */</td></tr>
+      <tr><td class="left">    apr_status_t (*peek)(serf_bucket_t *bucket,</td><td> </td><td class="right">    apr_status_t (*peek)(serf_bucket_t *bucket,</td></tr>
+      <tr><td class="left">                         const char **data, apr_size_t *len);</td><td> </td><td class="right">                         const char **data, apr_size_t *len);</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">    /**</td><td> </td><td class="right">    /**</td></tr>
+      <tr><td class="left">     * Destroy @a bucket, along with any associated resources.</td><td> </td><td class="right">     * Destroy @a bucket, along with any associated resources.</td></tr>
+      <tr><td class="left">     */</td><td> </td><td class="right">     */</td></tr>
+      <tr><td class="left">    void (*destroy)(serf_bucket_t *bucket);</td><td> </td><td class="right">    void (*destroy)(serf_bucket_t *bucket);</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr id="diff0001"></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock">    <span class="insert">/**</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">     * Save the current state of the @a bucket for later retrieval and retu</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">rn</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">     * APR_SUCCESS. A previously set snapshot will be cleared.</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">     * In case of error, the bucket should be considered invalid.</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">     */</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">    apr_status_t (*snapshot)(serf_bucket_t *bucket);</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"></span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">    /**</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">     * Restore the state of the @a bucket to the state set in the last</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">     * snapshot and returns APR_SUCCESS. If no snapshot was set, the bucket</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">'s</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">     * state is unchanged and APR_SUCCESS is returned.</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">     * In case of error, the bucket should be considered invalid.</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">     */</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">    apr_status_t (*restore_snapshot)(serf_bucket_t *bucket);</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"></span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">    /**</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">     * Test if a snapshot is set. Returns 0 if no snapshot was set, a non-0</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">     * value if there is a snapshot set.</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">     */</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">    int (*is_snapshot_set)(serf_bucket_t *bucket);</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock">                                                                           </td></tr>
+      <tr><td class="left">    /* ### apr buckets have 'copy', 'split', and 'setaside' functions.</td><td> </td><td class="right">    /* ### apr buckets have 'copy', 'split', and 'setaside' functions.</td></tr>
+      <tr><td class="left">       ### not sure whether those will be needed in this bucket model.</td><td> </td><td class="right">       ### not sure whether those will be needed in this bucket model.</td></tr>
+      <tr><td class="left">    */</td><td> </td><td class="right">    */</td></tr>
+      <tr><td class="left">};</td><td> </td><td class="right">};</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr><td class="left"> * Should the use and lifecycle of buckets be tracked?</td><td> </td><td class="right"> * Should the use and lifecycle of buckets be tracked?</td></tr>
+      <tr><td class="left"> *</td><td> </td><td class="right"> *</td></tr>
+      <tr><td class="left"> * When tracking, the system will ensure several semantic requirements</td><td> </td><td class="right"> * When tracking, the system will ensure several semantic requirements</td></tr>
+      <tr><td class="left"> * of bucket use:</td><td> </td><td class="right"> * of bucket use:</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr id="part-2" class="change" ><th><small>skipping to change at</small><a href="#part-2"><em> line 746<span class="hide"> &para;</span></em></a></th><th> </th><th><small>skipping to change at</small><a href="#part-2"><em> line 767<span class="hide"> &para;</span></em></a></th></tr>
+      <tr><td class="left">#define serf_bucket_read(b,r,d,l) SERF__RECREAD(b, (b)-&gt;type-&gt;read(b,r,d,l)
+)</td><td> </td><td class="right">#define serf_bucket_read(b,r,d,l) SERF__RECREAD(b, (b)-&gt;type-&gt;read(b,r,d,l)
+)</td></tr>
+      <tr><td class="left">#define serf_bucket_readline(b,a,f,d,l) \</td><td> </td><td class="right">#define serf_bucket_readline(b,a,f,d,l) \</td></tr>
+      <tr><td class="left">    SERF__RECREAD(b, (b)-&gt;type-&gt;readline(b,a,f,d,l))</td><td> </td><td class="right">    SERF__RECREAD(b, (b)-&gt;type-&gt;readline(b,a,f,d,l))</td></tr>
+      <tr><td class="left">#define serf_bucket_read_iovec(b,r,s,v,u) \</td><td> </td><td class="right">#define serf_bucket_read_iovec(b,r,s,v,u) \</td></tr>
+      <tr><td class="left">    SERF__RECREAD(b, (b)-&gt;type-&gt;read_iovec(b,r,s,v,u))</td><td> </td><td class="right">    SERF__RECREAD(b, (b)-&gt;type-&gt;read_iovec(b,r,s,v,u))</td></tr>
+      <tr><td class="left">#define serf_bucket_read_for_sendfile(b,r,h,f,o,l) \</td><td> </td><td class="right">#define serf_bucket_read_for_sendfile(b,r,h,f,o,l) \</td></tr>
+      <tr><td class="left">    SERF__RECREAD(b, (b)-&gt;type-&gt;read_for_sendfile(b,r,h,f,o,l))</td><td> </td><td class="right">    SERF__RECREAD(b, (b)-&gt;type-&gt;read_for_sendfile(b,r,h,f,o,l))</td></tr>
+      <tr><td class="left">#define serf_bucket_read_bucket(b,t) ((b)-&gt;type-&gt;read_bucket(b,t))</td><td> </td><td class="right">#define serf_bucket_read_bucket(b,t) ((b)-&gt;type-&gt;read_bucket(b,t))</td></tr>
+      <tr><td class="left">#define serf_bucket_peek(b,d,l) ((b)-&gt;type-&gt;peek(b,d,l))</td><td> </td><td class="right">#define serf_bucket_peek(b,d,l) ((b)-&gt;type-&gt;peek(b,d,l))</td></tr>
+      <tr><td class="left">#define serf_bucket_destroy(b) ((b)-&gt;type-&gt;destroy(b))</td><td> </td><td class="right">#define serf_bucket_destroy(b) ((b)-&gt;type-&gt;destroy(b))</td></tr>
+      <tr id="diff0002"></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">#define serf_bucket_snapshot(b) ((b)-&gt;type-&gt;snapshot(b))</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">#define serf_bucket_restore_snapshot(b) ((b)-&gt;type-&gt;restore_snapshot(b))</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">#define serf_bucket_is_snapshot_set(b) ((b)-&gt;type-&gt;is_snapshot_set(b))</span></td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr><td class="left"> * Check whether a real error occurred. Note that bucket read functions</td><td> </td><td class="right"> * Check whether a real error occurred. Note that bucket read functions</td></tr>
+      <tr><td class="left"> * can return EOF and EAGAIN as part of their "normal" operation, so they</td><td> </td><td class="right"> * can return EOF and EAGAIN as part of their "normal" operation, so they</td></tr>
+      <tr><td class="left"> * should not be considered an error.</td><td> </td><td class="right"> * should not be considered an error.</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left">#define SERF_BUCKET_READ_ERROR(status) ((status) \</td><td> </td><td class="right">#define SERF_BUCKET_READ_ERROR(status) ((status) \</td></tr>
+      <tr><td class="left">                                        &amp;&amp; !APR_STATUS_IS_EOF(status) \</td><td> </td><td class="right">                                        &amp;&amp; !APR_STATUS_IS_EOF(status) \</td></tr>
+      <tr><td class="left">                                        &amp;&amp; !APR_STATUS_IS_EAGAIN(status))</td><td> </td><td class="right">                                        &amp;&amp; !APR_STATUS_IS_EAGAIN(status))</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr id="part-3" class="change" ><th><small>skipping to change at</small><a href="#part-3"><em> line 878<span class="hide"> &para;</span></em></a></th><th> </th><th><small>skipping to change at</small><a href="#part-3"><em> line 902<span class="hide"> &para;</span></em></a></th></tr>
+      <tr><td class="left">SERF_DECLARE(apr_status_t) serf_debug__record_read(</td><td> </td><td class="right">SERF_DECLARE(apr_status_t) serf_debug__record_read(</td></tr>
+      <tr><td class="left">    const serf_bucket_t *bucket,</td><td> </td><td class="right">    const serf_bucket_t *bucket,</td></tr>
+      <tr><td class="left">    apr_status_t status);</td><td> </td><td class="right">    apr_status_t status);</td></tr>
+      <tr><td class="left">SERF_DECLARE(void) serf_debug__entered_loop(serf_bucket_alloc_t *allocator)
+;</td><td> </td><td class="right">SERF_DECLARE(void) serf_debug__entered_loop(serf_bucket_alloc_t *allocator)
+;</td></tr>
+      <tr><td class="left">SERF_DECLARE(void) serf_debug__closed_conn(serf_bucket_alloc_t *allocator);</td><td> </td><td class="right">SERF_DECLARE(void) serf_debug__closed_conn(serf_bucket_alloc_t *allocator);</td></tr>
+      <tr><td class="left">SERF_DECLARE(void) serf_debug__bucket_destroy(const serf_bucket_t *bucket);</td><td> </td><td class="right">SERF_DECLARE(void) serf_debug__bucket_destroy(const serf_bucket_t *bucket);</td></tr>
+      <tr><td class="left">SERF_DECLARE(void) serf_debug__bucket_alloc_check(serf_bucket_alloc_t *allo
+cator);</td><td> </td><td class="right">SERF_DECLARE(void) serf_debug__bucket_alloc_check(serf_bucket_alloc_t *allo
+cator);</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/* Version info */</td><td> </td><td class="right">/* Version info */</td></tr>
+      <tr><td class="left">#define SERF_MAJOR_VERSION 0</td><td> </td><td class="right">#define SERF_MAJOR_VERSION 0</td></tr>
+      <tr id="diff0003"></tr>
+      <tr><td class="lblock">#define SERF_MINOR_VERSION <span class="delete">2</span></td><td> </td><td class="rblock">#define SERF_MINOR_VERSION <span class="insert">3</span></td></tr>
+      <tr><td class="left">#define SERF_PATCH_VERSION 0</td><td> </td><td class="right">#define SERF_PATCH_VERSION 0</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/* Version number string */</td><td> </td><td class="right">/* Version number string */</td></tr>
+      <tr><td class="left">#define SERF_VERSION_STRING APR_STRINGIFY(SERF_MAJOR_VERSION) "." \</td><td> </td><td class="right">#define SERF_VERSION_STRING APR_STRINGIFY(SERF_MAJOR_VERSION) "." \</td></tr>
+      <tr><td class="left">                            APR_STRINGIFY(SERF_MINOR_VERSION) "." \</td><td> </td><td class="right">                            APR_STRINGIFY(SERF_MINOR_VERSION) "." \</td></tr>
+      <tr><td class="left">                            APR_STRINGIFY(SERF_PATCH_VERSION)</td><td> </td><td class="right">                            APR_STRINGIFY(SERF_PATCH_VERSION)</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr><td class="left"> * Check at compile time if the Serf version is at least a certain</td><td> </td><td class="right"> * Check at compile time if the Serf version is at least a certain</td></tr>
+      <tr><td class="left"> * level.</td><td> </td><td class="right"> * level.</td></tr>
+
+     <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+     <tr id="end" bgcolor="gray"><th colspan="5" align="center">&nbsp;End of changes. 3 change blocks.&nbsp;</th></tr>
+     <tr class="stats"><th><i>1 lines changed or deleted</i></th><th><i> </i></th><th><i>27 lines changed or added</i></th></tr>
+     <tr><td colspan="5" align="center" class="small"></td></tr>
+   </table>
+   <br/><br/>
+ 
+  <table class='diff_tbl' border="0" cellpadding="0" cellspacing="0"> 
+  <tr id="part-1" bgcolor="orange"><th>&nbsp;serf_bucket_types.h (0.2.0)&nbsp;</th><th> </th><th>&nbsp;serf_bucket_types.h (0.3.0)&nbsp;</th></tr> 
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr id="part-1" class="change" ><th><small>skipping to change at</small><a href="#part-1"><em> line 404<span class="hide"> &para;</span></em></a></th><th> </th><th><small>skipping to change at</small><a href="#part-1"><em> line 404<span class="hide"> &para;</span></em></a></th></tr>
+      <tr><td class="left">                                  serf_ssl_need_server_cert_t callback,</td><td> </td><td class="right">                                  serf_ssl_need_server_cert_t callback,</td></tr>
+      <tr><td class="left">                                  void *data);</td><td> </td><td class="right">                                  void *data);</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr><td class="left"> * Use the default root CA certificates as included with the OpenSSL librar
+y.</td><td> </td><td class="right"> * Use the default root CA certificates as included with the OpenSSL librar
+y.</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left">SERF_DECLARE(apr_status_t)</td><td> </td><td class="right">SERF_DECLARE(apr_status_t)</td></tr>
+      <tr><td class="left">serf_ssl_use_default_certificates(serf_ssl_context_t *context);</td><td> </td><td class="right">serf_ssl_use_default_certificates(serf_ssl_context_t *context);</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr id="diff0001"></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"> <span class="insert">* Return the depth of the certificate.</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> */</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">SERF_DECLARE(int) serf_ssl_cert_depth(const serf_ssl_certificate_t *cert);</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"></span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">/**</span></td></tr>
+      <tr><td class="left"> * Extract the fields of the issuer in a table with keys (E, CN, OU, O, L,</td><td> </td><td class="right"> * Extract the fields of the issuer in a table with keys (E, CN, OU, O, L,</td></tr>
+      <tr><td class="left"> * ST and C). The returned table will be allocated in @a pool.</td><td> </td><td class="right"> * ST and C). The returned table will be allocated in @a pool.</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left">SERF_DECLARE(apr_hash_t *)</td><td> </td><td class="right">SERF_DECLARE(apr_hash_t *)</td></tr>
+      <tr><td class="left">serf_ssl_cert_issuer(const serf_ssl_certificate_t *cert, apr_pool_t *pool);</td><td> </td><td class="right">serf_ssl_cert_issuer(const serf_ssl_certificate_t *cert, apr_pool_t *pool);</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr><td class="left"> * Extract the fields of the subject in a table with keys (E, CN, OU, O, L,</td><td> </td><td class="right"> * Extract the fields of the subject in a table with keys (E, CN, OU, O, L,</td></tr>
+      <tr><td class="left"> * ST and C). The returned table will be allocated in @a pool.</td><td> </td><td class="right"> * ST and C). The returned table will be allocated in @a pool.</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr id="part-2" class="change" ><th><small>skipping to change at</small><a href="#part-2"><em> line 425<span class="hide"> &para;</span></em></a></th><th> </th><th><small>skipping to change at</small><a href="#part-2"><em> line 430<span class="hide"> &para;</span></em></a></th></tr>
+      <tr><td class="left">serf_ssl_cert_subject(const serf_ssl_certificate_t *cert, apr_pool_t *pool)
+;</td><td> </td><td class="right">serf_ssl_cert_subject(const serf_ssl_certificate_t *cert, apr_pool_t *pool)
+;</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr><td class="left"> * Extract the fields of the certificate in a table with keys (sha1, notBef
+ore,</td><td> </td><td class="right"> * Extract the fields of the certificate in a table with keys (sha1, notBef
+ore,</td></tr>
+      <tr><td class="left"> * notAfter). The returned table will be allocated in @a pool.</td><td> </td><td class="right"> * notAfter). The returned table will be allocated in @a pool.</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left">SERF_DECLARE(apr_hash_t *)</td><td> </td><td class="right">SERF_DECLARE(apr_hash_t *)</td></tr>
+      <tr><td class="left">serf_ssl_cert_certificate(const serf_ssl_certificate_t *cert, apr_pool_t *p
+ool);</td><td> </td><td class="right">serf_ssl_cert_certificate(const serf_ssl_certificate_t *cert, apr_pool_t *p
+ool);</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr id="diff0002"></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"> <span class="insert">* Export a certificate to base64-encoded, zero-terminated string.</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * The returned string is allocated in @a pool. Returns NULL on failure.</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> */</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">SERF_DECLARE(const char *)</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">serf_ssl_cert_export(const serf_ssl_certificate_t *cert, apr_pool_t *pool);</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"></span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">/**</span></td></tr>
+      <tr><td class="left"> * Load a CA certificate file from a path @a file_path. If the file was loa
+ded</td><td> </td><td class="right"> * Load a CA certificate file from a path @a file_path. If the file was loa
+ded</td></tr>
+      <tr><td class="left"> * and parsed correctly, a certificate @a cert will be created and returned
+.</td><td> </td><td class="right"> * and parsed correctly, a certificate @a cert will be created and returned
+.</td></tr>
+      <tr><td class="left"> * This certificate object will be alloced in @a pool.</td><td> </td><td class="right"> * This certificate object will be alloced in @a pool.</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left">SERF_DECLARE(apr_status_t)</td><td> </td><td class="right">SERF_DECLARE(apr_status_t)</td></tr>
+      <tr><td class="left">serf_ssl_load_cert_file(serf_ssl_certificate_t **cert, const char *file_pat
+h,</td><td> </td><td class="right">serf_ssl_load_cert_file(serf_ssl_certificate_t **cert, const char *file_pat
+h,</td></tr>
+      <tr><td class="left">                        apr_pool_t *pool);</td><td> </td><td class="right">                        apr_pool_t *pool);</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr><td class="left"> * Adds the certificate @a cert to the list of trusted certificates in</td><td> </td><td class="right"> * Adds the certificate @a cert to the list of trusted certificates in</td></tr>
+
+     <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+     <tr id="end" bgcolor="gray"><th colspan="5" align="center">&nbsp;End of changes. 2 change blocks.&nbsp;</th></tr>
+     <tr class="stats"><th><i>0 lines changed or deleted</i></th><th><i> </i></th><th><i>12 lines changed or added</i></th></tr>
+     <tr><td colspan="5" align="center" class="small"></td></tr>
+   </table>
+   <br/><br/>
+ 
+  <table class='diff_tbl' border="0" cellpadding="0" cellspacing="0"> 
+  <tr id="part-1" bgcolor="orange"><th>&nbsp;serf_bucket_util.h (0.2.0)&nbsp;</th><th> </th><th>&nbsp;serf_bucket_util.h (0.3.0)&nbsp;</th></tr> 
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr id="part-1" class="change" ><th><small>skipping to change at</small><a href="#part-1"><em> line 98<span class="hide"> &para;</span></em></a></th><th> </th><th><small>skipping to change at</small><a href="#part-1"><em> line 98<span class="hide"> &para;</span></em></a></th></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr><td class="left"> * Default implementation of the @see destroy functionality.</td><td> </td><td class="right"> * Default implementation of the @see destroy functionality.</td></tr>
+      <tr><td class="left"> *</td><td> </td><td class="right"> *</td></tr>
+      <tr><td class="left"> * This function will return the @a bucket, and the data member to its</td><td> </td><td class="right"> * This function will return the @a bucket, and the data member to its</td></tr>
+      <tr><td class="left"> * allcoator.</td><td> </td><td class="right"> * allcoator.</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left">SERF_DECLARE(void) serf_default_destroy_and_data(serf_bucket_t *bucket);</td><td> </td><td class="right">SERF_DECLARE(void) serf_default_destroy_and_data(serf_bucket_t *bucket);</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr id="diff0001"></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"> <span class="insert">* Default implementation of the @see snapshot functionality</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> *</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * This function will return an error to indicate it's not implemented.</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> */</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">SERF_DECLARE(apr_status_t) serf_default_snapshot(serf_bucket_t *bucket);</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"></span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">/*</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * Default implementation of the @see restore_snapshot functionality</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> *</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * This function will return an error to indicate it's not implemented.</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> */</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">SERF_DECLARE(apr_status_t) serf_default_restore_snapshot(serf_bucket_t *buc</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">ket);</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"></span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">/*</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * Default implementation of the @see is_snapshot_set functionality</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> *</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * This function will return 0 (no snapshot set).</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> */</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">SERF_DECLARE(int) serf_default_is_snapshot_set(serf_bucket_t *bucket);</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"></span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">/**</span></td></tr>
+      <tr><td class="left"> * Allocate @a size bytes of memory using @a allocator.</td><td> </td><td class="right"> * Allocate @a size bytes of memory using @a allocator.</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left">SERF_DECLARE(void *) serf_bucket_mem_alloc(</td><td> </td><td class="right">SERF_DECLARE(void *) serf_bucket_mem_alloc(</td></tr>
+      <tr><td class="left">    serf_bucket_alloc_t *allocator,</td><td> </td><td class="right">    serf_bucket_alloc_t *allocator,</td></tr>
+      <tr><td class="left">    apr_size_t size);</td><td> </td><td class="right">    apr_size_t size);</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr id="diff0002"></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"> <span class="insert">* Allocate @a size bytes of memory using @a allocator and set all of the</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> * memory to 0.</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"> */</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">SERF_DECLARE(void *) serf_bucket_mem_calloc(</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">    serf_bucket_alloc_t *allocator,</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">    apr_size_t size);</span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert"></span></td></tr>
+      <tr><td class="lblock"></td><td> </td><td class="rblock"><span class="insert">/**</span></td></tr>
+      <tr><td class="left"> * Free the memory at @a block, returning it to @a allocator.</td><td> </td><td class="right"> * Free the memory at @a block, returning it to @a allocator.</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left">SERF_DECLARE(void) serf_bucket_mem_free(</td><td> </td><td class="right">SERF_DECLARE(void) serf_bucket_mem_free(</td></tr>
+      <tr><td class="left">    serf_bucket_alloc_t *allocator,</td><td> </td><td class="right">    serf_bucket_alloc_t *allocator,</td></tr>
+      <tr><td class="left">    void *block);</td><td> </td><td class="right">    void *block);</td></tr>
+      <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+      <tr><td class="left">/**</td><td> </td><td class="right">/**</td></tr>
+      <tr><td class="left"> * Analogous to apr_pstrmemdup, using a bucket allocator instead.</td><td> </td><td class="right"> * Analogous to apr_pstrmemdup, using a bucket allocator instead.</td></tr>
+      <tr><td class="left"> */</td><td> </td><td class="right"> */</td></tr>
+      <tr><td class="left">SERF_DECLARE(char *) serf_bstrmemdup(serf_bucket_alloc_t *allocator,</td><td> </td><td class="right">SERF_DECLARE(char *) serf_bstrmemdup(serf_bucket_alloc_t *allocator,</td></tr>
+
+     <tr><td class="left"></td><td> </td><td class="right"></td></tr>
+     <tr id="end" bgcolor="gray"><th colspan="5" align="center">&nbsp;End of changes. 2 change blocks.&nbsp;</th></tr>
+     <tr class="stats"><th><i>0 lines changed or deleted</i></th><th><i> </i></th><th><i>30 lines changed or added</i></th></tr>
+     <tr><td colspan="5" align="center" class="small"></td></tr>
+   </table>
+   <br/><div style='width:100%;' align='left' class='small'>This html diff was produced by rfcdiff 1.41.The latest version is available from <a href='http://tools.ietf.org/tools/rfcdiff/'>http://tools.ietf.org/tools/rfcdiff/</a></div>
+</td></tr></table>
+</body>
+</html>

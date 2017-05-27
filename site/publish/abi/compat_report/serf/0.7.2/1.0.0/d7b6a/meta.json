@@ -1,0 +1,8 @@
+{
+  "Affected": "40.4",
+  "Added": 5,
+  "Removed": 3,
+  "TotalProblems": 27,
+  "Object1": "usr/local/serf/lib/libserf-0.so.0.0.0",
+  "Object2": "usr/local/serf/lib/libserf-1.so.0.0.0"
+}

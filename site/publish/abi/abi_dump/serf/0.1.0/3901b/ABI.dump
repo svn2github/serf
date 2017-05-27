@@ -1,0 +1,2216 @@
+$VAR1 = {
+          'ABI_DUMPER_VERSION' => '0.99.19',
+          'ABI_DUMP_VERSION' => '3.3',
+          'Arch' => 'x86_64',
+          'GccVersion' => '4.8.5',
+          'Headers' => {
+                         'serf.h' => 1,
+                         'serf_bucket_types.h' => 1,
+                         'serf_bucket_util.h' => 1
+                       },
+          'Language' => 'C',
+          'LibraryName' => 'libserf-0.so.0.0.0',
+          'LibraryVersion' => '0.1.0',
+          'NameSpaces' => {},
+          'Needed' => {
+                        'libapr-1.so.0' => 1,
+                        'libaprutil-1.so.0' => 1,
+                        'libc.so.6' => 1,
+                        'libcrypto.so.1.0.0' => 1,
+                        'libdb-4.8.so' => 1,
+                        'libdl.so.2' => 1,
+                        'libexpat.so.1' => 1,
+                        'liblber-2.4.so.2' => 1,
+                        'libldap-2.4.so.2' => 1,
+                        'libpthread.so.0' => 1,
+                        'librt.so.1' => 1,
+                        'libssl.so.1.0.0' => 1,
+                        'libz.so.1' => 1
+                      },
+          'PublicABI' => '1',
+          'Sources' => {
+                         'aggregate_buckets.c' => 1,
+                         'allocator.c' => 1,
+                         'barrier_buckets.c' => 1,
+                         'buckets.c' => 1,
+                         'chunk_buckets.c' => 1,
+                         'dechunk_buckets.c' => 1,
+                         'deflate_buckets.c' => 1,
+                         'file_buckets.c' => 1,
+                         'headers_buckets.c' => 1,
+                         'limit_buckets.c' => 1,
+                         'mmap_buckets.c' => 1,
+                         'request_buckets.c' => 1,
+                         'response_buckets.c' => 1,
+                         'simple_buckets.c' => 1,
+                         'socket_buckets.c' => 1,
+                         'ssl_buckets.c' => 1
+                       },
+          'SymbolInfo' => {
+                            '14908' => {
+                                         'Header' => 'serf.h',
+                                         'Line' => '706',
+                                         'Param' => {
+                                                      '0' => {
+                                                               'name' => 'allocator',
+                                                               'type' => '1463'
+                                                             }
+                                                    },
+                                         'Reg' => {
+                                                    '0' => 'rdi'
+                                                  },
+                                         'Return' => '1',
+                                         'ShortName' => 'serf_debug__closed_conn',
+                                         'Source' => 'allocator.c',
+                                         'SourceLine' => '341'
+                                       },
+                            '15014' => {
+                                         'Header' => 'serf.h',
+                                         'Line' => '708',
+                                         'Param' => {
+                                                      '0' => {
+                                                               'name' => 'allocator',
+                                                               'type' => '1463'
+                                                             }
+                                                    },
+                                         'Reg' => {
+                                                    '0' => 'rdi'
+                                                  },
+                                         'Return' => '1',
+                                         'ShortName' => 'serf_debug__bucket_alloc_check',
+                                         'Source' => 'allocator.c',
+                                         'SourceLine' => '387'
+                                       },
+                            '15111' => {
+                                         'Header' => 'serf.h',
+                                         'Line' => '630',
+                                         'Param' => {
+                                                      '0' => {
+                                                               'name' => 'pool',
+                                                               'type' => '4064'
+                                                             },
+                                                      '1' => {
+                                                               'name' => 'unfreed',
+                                                               'type' => '10265'
+                                                             },
+                                                      '2' => {
+                                                               'name' => 'unfreed_baton',
+                                                               'type' => '234'
+                                                             }
+                                                    },
+                                         'Reg' => {
+                                                    '0' => 'rdi',
+                                                    '1' => 'rsi',
+                                                    '2' => 'rdx'
+                                                  },
+                                         'Return' => '1463',
+                                         'ShortName' => 'serf_bucket_allocator_create',
+                                         'Source' => 'allocator.c',
+                                         'SourceLine' => '113'
+                                       },
+                            '17973' => {
+                                         'Header' => 'serf_bucket_util.h',
+                                         'Line' => '118',
+                                         'Param' => {
+                                                      '0' => {
+                                                               'name' => 'allocator',
+                                                               'type' => '1463'
+                                                             },
+                                                      '1' => {
+                                                               'name' => 'str',
+                                                               'type' => '369'
+                                                             },
+                                                      '2' => {
+                                                               'name' => 'size',
+                                                               'type' => '334'
+                                                             }
+                                                    },
+                                         'Reg' => {
+                                                    '0' => 'rdi',
+                                                    '1' => 'rsi',
+                                                    '2' => 'rdx'
+                                                  },
+                                         'Return' => '236',
+                                         'ShortName' => 'serf_bstrmemdup',
+                                         'Source' => 'buckets.c',
+                                         'SourceLine' => '125'
+                                       },
+                            '18444' => {
+                                         'Header' => 'serf_bucket_util.h',
+                                         'Line' => '164',
+                                         'Param' => {
+                                                      '0' => {
+                                                               'name' => 'data',
+                                                               'type' => '1208'
+                                                             },
+                                                      '1' => {
+                                                               'name' => 'len',
+                                                               'type' => '1214'
+                                                             },
+                                                      '2' => {
+                                                               'name' => 'acceptable',
+                                                               'type' => '191'
+                                                             },
+                                                      '3' => {
+                                                               'name' => 'found',
+                                                               'type' => '328'
+                                                             }
+                                                    },
+                                         'Reg' => {
+                                                    '0' => 'rdi',
+                                                    '1' => 'rsi',
+                                                    '2' => 'rdx',
+                                                    '3' => 'rcx'
+                                                  },
+                                         'Return' => '1',
+                                         'ShortName' => 'serf_util_readline',
+                                         'Source' => 'buckets.c',
+                                         'SourceLine' => '192'
+                                       },
+                            '18729' => {
+                                         'Header' => 'serf_bucket_util.h',
+                                         'Line' => '219',
+                                         'Param' => {
+                                                      '0' => {
+                                                               'name' => 'databuf',
+                                                               'type' => '17125'
+                                                             }
+                                                    },
+                                         'Reg' => {
+                                                    '0' => 'rdi'
+                                                  },
+                                         'Return' => '1',
+                                         'ShortName' => 'serf_databuf_init',
+                                         'Source' => 'buckets.c',
+                                         'SourceLine' => '272'
+                                       },
+                            '18774' => {
+                                         'Header' => 'serf_bucket_util.h',
+                                         'Line' => '228',
+                                         'Param' => {
+                                                      '0' => {
+                                                               'name' => 'databuf',
+                                                               'type' => '17125'
+                                                             },
+                                                      '1' => {
+                                                               'name' => 'requested',
+                                                               'type' => '334'
+                                                             },
+                                                      '2' => {
+                                                               'name' => 'data',
+                                                               'type' => '1208'
+                                                             },
+                                                      '3' => {
+                                                               'name' => 'len',
+                                                               'type' => '1214'
+                                                             }
+                                                    },
+                                         'Reg' => {
+                                                    '0' => 'rdi',
+                                                    '1' => 'rsi',
+                                                    '2' => 'rdx',
+                                                    '3' => 'rcx'
+                                                  },
+                                         'Return' => '358',
+                                         'ShortName' => 'serf_databuf_read',
+                                         'Source' => 'buckets.c',
+                                         'SourceLine' => '314'
+                                       },
+                            '18915' => {
+                                         'Header' => 'serf_bucket_util.h',
+                                         'Line' => '240',
+                                         'Param' => {
+                                                      '0' => {
+                                                               'name' => 'databuf',
+                                                               'type' => '17125'
+                                                             },
+                                                      '1' => {
+                                                               'name' => 'acceptable',
+                                                               'type' => '191'
+                                                             },
+                                                      '2' => {
+                                                               'name' => 'found',
+                                                               'type' => '328'
+                                                             },
+                                                      '3' => {
+                                                               'name' => 'data',
+                                                               'type' => '1208'
+                                                             },
+                                                      '4' => {
+                                                               'name' => 'len',
+                                                               'type' => '1214'
+                                                             }
+                                                    },
+                                         'Reg' => {
+                                                    '0' => 'rdi',
+                                                    '1' => 'rsi',
+                                                    '2' => 'rdx',
+                                                    '3' => 'rcx',
+                                                    '4' => 'r8'
+                                                  },
+                                         'Return' => '358',
+                                         'ShortName' => 'serf_databuf_readline',
+                                         'Source' => 'buckets.c',
+                                         'SourceLine' => '343'
+                                       },
+                            '19114' => {
+                                         'Header' => 'serf_bucket_util.h',
+                                         'Line' => '252',
+                                         'Param' => {
+                                                      '0' => {
+                                                               'name' => 'databuf',
+                                                               'type' => '17125'
+                                                             },
+                                                      '1' => {
+                                                               'name' => 'data',
+                                                               'type' => '1208'
+                                                             },
+                                                      '2' => {
+                                                               'name' => 'len',
+                                                               'type' => '1214'
+                                                             }
+                                                    },
+                                         'Reg' => {
+                                                    '0' => 'rdi',
+                                                    '1' => 'rsi',
+                                                    '2' => 'rdx'
+                                                  },
+                                         'Return' => '358',
+                                         'ShortName' => 'serf_databuf_peek',
+                                         'Source' => 'buckets.c',
+                                         'SourceLine' => '366'
+                                       },
+                            '19239' => {
+                                         'Header' => 'serf.h',
+                                         'Line' => '683',
+                                         'Param' => {
+                                                      '0' => {
+                                                               'name' => 'linebuf',
+                                                               'type' => '19284'
+                                                             }
+                                                    },
+                                         'Reg' => {
+                                                    '0' => 'rdi'
+                                                  },
+                                         'Return' => '1',
+                                         'ShortName' => 'serf_linebuf_init',
+                                         'Source' => 'buckets.c',
+                                         'SourceLine' => '391'
+                                       },
+                            '19290' => {
+                                         'Header' => 'serf.h',
+                                         'Line' => '693',
+                                         'Param' => {
+                                                      '0' => {
+                                                               'name' => 'linebuf',
+                                                               'type' => '19284'
+                                                             },
+                                                      '1' => {
+                                                               'name' => 'bucket',
+                                                               'type' => '1172'
+                                                             },
+                                                      '2' => {
+                                                               'name' => 'acceptable',
+                                                               'type' => '191'
+                                                             }
+                                                    },
+                                         'Reg' => {
+                                                    '0' => 'rdi',
+                                                    '1' => 'rsi',
+                                                    '2' => 'rdx'
+                                                  },
+                                         'Return' => '358',
+                                         'ShortName' => 'serf_linebuf_fetch',
+                                         'Source' => 'buckets.c',
+                                         'SourceLine' => '397'
+                                       },
+                            '21871' => {
+                                         'Header' => 'serf_bucket_types.h',
+                                         'Line' => '185',
+                                         'Param' => {
+                                                      '0' => {
+                                                               'name' => 'data',
+                                                               'type' => '369'
+                                                             },
+                                                      '1' => {
+                                                               'name' => 'len',
+                                                               'type' => '334'
+                                                             },
+                                                      '2' => {
+                                                               'name' => 'allocator',
+                                                               'type' => '1463'
+                                                             }
+                                                    },
+                                         'Reg' => {
+                                                    '0' => 'rdi',
+                                                    '1' => 'rsi',
+                                                    '2' => 'rdx'
+                                                  },
+                                         'Return' => '1172',
+                                         'ShortName' => 'serf_bucket_simple_copy_create',
+                                         'Source' => 'simple_buckets.c',
+                                         'SourceLine' => '55'
+                                       },
+                            '22116' => {
+                                         'Data' => 1,
+                                         'Header' => 'serf_bucket_types.h',
+                                         'Return' => '1404',
+                                         'ShortName' => 'serf_bucket_type_simple',
+                                         'Source' => 'simple_buckets.c',
+                                         'SourceLine' => '123'
+                                       },
+                            '25491' => {
+                                         'Data' => 1,
+                                         'Header' => 'serf_bucket_types.h',
+                                         'Return' => '1404',
+                                         'ShortName' => 'serf_bucket_type_file',
+                                         'Source' => 'file_buckets.c',
+                                         'SourceLine' => '108'
+                                       },
+                            '25743' => {
+                                         'Header' => 'serf_bucket_types.h',
+                                         'Line' => '204',
+                                         'Param' => {
+                                                      '0' => {
+                                                               'name' => 'file_mmap',
+                                                               'type' => '25463'
+                                                             },
+                                                      '1' => {
+                                                               'name' => 'allocator',
+                                                               'type' => '1463'
+                                                             }
+                                                    },
+                                         'Reg' => {
+                                                    '0' => 'rdi',
+                                                    '1' => 'rsi'
+                                                  },
+                                         'Return' => '1172',
+                                         'ShortName' => 'serf_bucket_mmap_create',
+                                         'Source' => 'mmap_buckets.c',
+                                         'SourceLine' => '31'
+                                       },
+                            '2802' => {
+                                        'Header' => 'serf_bucket_types.h',
+                                        'Line' => '119',
+                                        'Param' => {
+                                                     '0' => {
+                                                              'name' => 'allocator',
+                                                              'type' => '1463'
+                                                            }
+                                                   },
+                                        'Reg' => {
+                                                   '0' => 'rdi'
+                                                 },
+                                        'Return' => '1172',
+                                        'ShortName' => 'serf_bucket_aggregate_create',
+                                        'Source' => 'aggregate_buckets.c',
+                                        'SourceLine' => '50'
+                                      },
+                            '28064' => {
+                                         'Data' => 1,
+                                         'Header' => 'serf_bucket_types.h',
+                                         'Return' => '1404',
+                                         'ShortName' => 'serf_bucket_type_mmap',
+                                         'Source' => 'mmap_buckets.c',
+                                         'SourceLine' => '109'
+                                       },
+                            '2928' => {
+                                        'Header' => 'serf_bucket_types.h',
+                                        'Line' => '123',
+                                        'Param' => {
+                                                     '0' => {
+                                                              'name' => 'bucket',
+                                                              'type' => '1172'
+                                                            }
+                                                   },
+                                        'Reg' => {
+                                                   '0' => 'rdi'
+                                                 },
+                                        'Return' => '1',
+                                        'ShortName' => 'serf_bucket_aggregate_become',
+                                        'Source' => 'aggregate_buckets.c',
+                                        'SourceLine' => '78'
+                                      },
+                            '3005' => {
+                                        'Header' => 'serf_bucket_types.h',
+                                        'Line' => '125',
+                                        'Param' => {
+                                                     '0' => {
+                                                              'name' => 'aggregate_bucket',
+                                                              'type' => '1172'
+                                                            },
+                                                     '1' => {
+                                                              'name' => 'prepend_bucket',
+                                                              'type' => '1172'
+                                                            }
+                                                   },
+                                        'Reg' => {
+                                                   '0' => 'rdi',
+                                                   '1' => 'rsi'
+                                                 },
+                                        'Return' => '1',
+                                        'ShortName' => 'serf_bucket_aggregate_prepend',
+                                        'Source' => 'aggregate_buckets.c',
+                                        'SourceLine' => '93'
+                                      },
+                            '30561' => {
+                                         'Data' => 1,
+                                         'Header' => 'serf_bucket_types.h',
+                                         'Return' => '1404',
+                                         'ShortName' => 'serf_bucket_type_socket',
+                                         'Source' => 'socket_buckets.c',
+                                         'SourceLine' => '84'
+                                       },
+                            '3112' => {
+                                        'Header' => 'serf_bucket_types.h',
+                                        'Line' => '129',
+                                        'Param' => {
+                                                     '0' => {
+                                                              'name' => 'aggregate_bucket',
+                                                              'type' => '1172'
+                                                            },
+                                                     '1' => {
+                                                              'name' => 'append_bucket',
+                                                              'type' => '1172'
+                                                            }
+                                                   },
+                                        'Reg' => {
+                                                   '0' => 'rdi',
+                                                   '1' => 'rsi'
+                                                 },
+                                        'Return' => '1',
+                                        'ShortName' => 'serf_bucket_aggregate_append',
+                                        'Source' => 'aggregate_buckets.c',
+                                        'SourceLine' => '108'
+                                      },
+                            '3425' => {
+                                        'Header' => 'serf_bucket_types.h',
+                                        'Line' => '138',
+                                        'Param' => {
+                                                     '0' => {
+                                                              'name' => 'aggregate_bucket',
+                                                              'type' => '1172'
+                                                            },
+                                                     '1' => {
+                                                              'name' => 'vecs',
+                                                              'type' => '322'
+                                                            },
+                                                     '2' => {
+                                                              'name' => 'vecs_count',
+                                                              'type' => '191'
+                                                            }
+                                                   },
+                                        'Reg' => {
+                                                   '0' => 'rdi',
+                                                   '1' => 'rsi',
+                                                   '2' => 'rdx'
+                                                 },
+                                        'Return' => '1',
+                                        'ShortName' => 'serf_bucket_aggregate_append_iovec',
+                                        'Source' => 'aggregate_buckets.c',
+                                        'SourceLine' => '157'
+                                      },
+                            '34851' => {
+                                         'Data' => 1,
+                                         'Header' => 'serf_bucket_types.h',
+                                         'Return' => '1404',
+                                         'ShortName' => 'serf_bucket_type_response',
+                                         'Source' => 'response_buckets.c',
+                                         'SourceLine' => '398'
+                                       },
+                            '35054' => {
+                                         'Header' => 'serf_bucket_types.h',
+                                         'Line' => '262',
+                                         'Param' => {
+                                                      '0' => {
+                                                               'name' => 'bkt',
+                                                               'type' => '1172'
+                                                             },
+                                                      '1' => {
+                                                               'name' => 'header',
+                                                               'type' => '369'
+                                                             },
+                                                      '2' => {
+                                                               'name' => 'header_size',
+                                                               'type' => '334'
+                                                             },
+                                                      '3' => {
+                                                               'name' => 'header_copy',
+                                                               'type' => '191'
+                                                             },
+                                                      '4' => {
+                                                               'name' => 'value',
+                                                               'type' => '369'
+                                                             },
+                                                      '5' => {
+                                                               'name' => 'value_size',
+                                                               'type' => '334'
+                                                             },
+                                                      '6' => {
+                                                               'name' => 'value_copy',
+                                                               'offset' => '0',
+                                                               'type' => '191'
+                                                             }
+                                                    },
+                                         'Reg' => {
+                                                    '0' => 'rdi',
+                                                    '1' => 'rsi',
+                                                    '2' => 'rdx',
+                                                    '3' => 'rcx',
+                                                    '4' => 'r8',
+                                                    '5' => 'r9'
+                                                  },
+                                         'Return' => '1',
+                                         'ShortName' => 'serf_bucket_headers_setx',
+                                         'Source' => 'headers_buckets.c',
+                                         'SourceLine' => '68'
+                                       },
+                            '35113' => {
+                                         'Header' => 'serf_bucket_types.h',
+                                         'Line' => '335',
+                                         'Param' => {
+                                                      '0' => {
+                                                               'name' => 'stream',
+                                                               'type' => '1172'
+                                                             },
+                                                      '1' => {
+                                                               'name' => 'len',
+                                                               'type' => '334'
+                                                             },
+                                                      '2' => {
+                                                               'name' => 'allocator',
+                                                               'type' => '1463'
+                                                             }
+                                                    },
+                                         'Reg' => {
+                                                    '0' => 'rdi',
+                                                    '1' => 'rsi',
+                                                    '2' => 'rdx'
+                                                  },
+                                         'Return' => '1172',
+                                         'ShortName' => 'serf_bucket_limit_create',
+                                         'Source' => 'limit_buckets.c',
+                                         'SourceLine' => '28'
+                                       },
+                            '35145' => {
+                                         'Header' => 'serf_bucket_types.h',
+                                         'Line' => '378',
+                                         'Param' => {
+                                                      '0' => {
+                                                               'name' => 'stream',
+                                                               'type' => '1172'
+                                                             },
+                                                      '1' => {
+                                                               'name' => 'allocator',
+                                                               'type' => '1463'
+                                                             }
+                                                    },
+                                         'Reg' => {
+                                                    '0' => 'rdi',
+                                                    '1' => 'rsi'
+                                                  },
+                                         'Return' => '1172',
+                                         'ShortName' => 'serf_bucket_barrier_create',
+                                         'Source' => 'barrier_buckets.c',
+                                         'SourceLine' => '27'
+                                       },
+                            '35172' => {
+                                         'Header' => 'serf_bucket_types.h',
+                                         'Line' => '267',
+                                         'Param' => {
+                                                      '0' => {
+                                                               'name' => 'headers_bucket',
+                                                               'type' => '1172'
+                                                             },
+                                                      '1' => {
+                                                               'name' => 'header',
+                                                               'type' => '369'
+                                                             }
+                                                    },
+                                         'Reg' => {
+                                                    '0' => 'rdi',
+                                                    '1' => 'rsi'
+                                                  },
+                                         'Return' => '369',
+                                         'ShortName' => 'serf_bucket_headers_get',
+                                         'Source' => 'headers_buckets.c',
+                                         'SourceLine' => '140'
+                                       },
+                            '35226' => {
+                                         'Header' => 'serf_bucket_types.h',
+                                         'Line' => '309',
+                                         'Param' => {
+                                                      '0' => {
+                                                               'name' => 'stream',
+                                                               'type' => '1172'
+                                                             },
+                                                      '1' => {
+                                                               'name' => 'allocator',
+                                                               'type' => '1463'
+                                                             }
+                                                    },
+                                         'Reg' => {
+                                                    '0' => 'rdi',
+                                                    '1' => 'rsi'
+                                                  },
+                                         'Return' => '1172',
+                                         'ShortName' => 'serf_bucket_dechunk_create',
+                                         'Source' => 'dechunk_buckets.c',
+                                         'SourceLine' => '42'
+                                       },
+                            '35253' => {
+                                         'Header' => 'serf_bucket_types.h',
+                                         'Line' => '323',
+                                         'Param' => {
+                                                      '0' => {
+                                                               'name' => 'stream',
+                                                               'type' => '1172'
+                                                             },
+                                                      '1' => {
+                                                               'name' => 'allocator',
+                                                               'type' => '1463'
+                                                             },
+                                                      '2' => {
+                                                               'name' => 'format',
+                                                               'type' => '191'
+                                                             }
+                                                    },
+                                         'Reg' => {
+                                                    '0' => 'rdi',
+                                                    '1' => 'rsi',
+                                                    '2' => 'rdx'
+                                                  },
+                                         'Return' => '1172',
+                                         'ShortName' => 'serf_bucket_deflate_create',
+                                         'Source' => 'deflate_buckets.c',
+                                         'SourceLine' => '83'
+                                       },
+                            '3616' => {
+                                        'Data' => 1,
+                                        'Header' => 'serf_bucket_types.h',
+                                        'Return' => '1404',
+                                        'ShortName' => 'serf_bucket_type_aggregate',
+                                        'Source' => 'aggregate_buckets.c',
+                                        'SourceLine' => '331'
+                                      },
+                            '3638' => {
+                                        'Header' => 'serf_bucket_util.h',
+                                        'Line' => '110',
+                                        'Param' => {
+                                                     '0' => {
+                                                              'name' => 'allocator',
+                                                              'type' => '1463'
+                                                            },
+                                                     '1' => {
+                                                              'name' => 'block',
+                                                              'type' => '234'
+                                                            }
+                                                   },
+                                        'Reg' => {
+                                                   '0' => 'rdi',
+                                                   '1' => 'rsi'
+                                                 },
+                                        'Return' => '1',
+                                        'ShortName' => 'serf_bucket_mem_free',
+                                        'Source' => 'allocator.c',
+                                        'SourceLine' => '207'
+                                      },
+                            '3660' => {
+                                        'Header' => 'serf_bucket_util.h',
+                                        'Line' => '97',
+                                        'Param' => {
+                                                     '0' => {
+                                                              'name' => 'bucket',
+                                                              'type' => '1172'
+                                                            }
+                                                   },
+                                        'Reg' => {
+                                                   '0' => 'rdi'
+                                                 },
+                                        'Return' => '1',
+                                        'ShortName' => 'serf_default_destroy_and_data',
+                                        'Source' => 'buckets.c',
+                                        'SourceLine' => '115'
+                                      },
+                            '3677' => {
+                                        'Header' => 'serf_bucket_util.h',
+                                        'Line' => '103',
+                                        'Param' => {
+                                                     '0' => {
+                                                              'name' => 'allocator',
+                                                              'type' => '1463'
+                                                            },
+                                                     '1' => {
+                                                              'name' => 'size',
+                                                              'type' => '334'
+                                                            }
+                                                   },
+                                        'Reg' => {
+                                                   '0' => 'rdi',
+                                                   '1' => 'rsi'
+                                                 },
+                                        'Return' => '234',
+                                        'ShortName' => 'serf_bucket_mem_alloc',
+                                        'Source' => 'allocator.c',
+                                        'SourceLine' => '153'
+                                      },
+                            '3703' => {
+                                        'Header' => 'serf_bucket_util.h',
+                                        'Line' => '41',
+                                        'Param' => {
+                                                     '0' => {
+                                                              'name' => 'type',
+                                                              'type' => '1398'
+                                                            },
+                                                     '1' => {
+                                                              'name' => 'allocator',
+                                                              'type' => '1463'
+                                                            },
+                                                     '2' => {
+                                                              'name' => 'data',
+                                                              'type' => '234'
+                                                            }
+                                                   },
+                                        'Reg' => {
+                                                   '0' => 'rdi',
+                                                   '1' => 'rsi',
+                                                   '2' => 'rdx'
+                                                 },
+                                        'Return' => '1172',
+                                        'ShortName' => 'serf_bucket_create',
+                                        'Source' => 'buckets.c',
+                                        'SourceLine' => '24'
+                                      },
+                            '3734' => {
+                                        'Header' => 'serf_bucket_types.h',
+                                        'Line' => '175',
+                                        'Param' => {
+                                                     '0' => {
+                                                              'name' => 'data',
+                                                              'type' => '369'
+                                                            },
+                                                     '1' => {
+                                                              'name' => 'len',
+                                                              'type' => '334'
+                                                            },
+                                                     '2' => {
+                                                              'name' => 'freefunc',
+                                                              'type' => '1469'
+                                                            },
+                                                     '3' => {
+                                                              'name' => 'freefunc_baton',
+                                                              'type' => '234'
+                                                            },
+                                                     '4' => {
+                                                              'name' => 'allocator',
+                                                              'type' => '1463'
+                                                            }
+                                                   },
+                                        'Reg' => {
+                                                   '0' => 'rdi',
+                                                   '1' => 'rsi',
+                                                   '2' => 'rdx',
+                                                   '3' => 'rcx',
+                                                   '4' => 'r8'
+                                                 },
+                                        'Return' => '1172',
+                                        'ShortName' => 'serf_bucket_simple_create',
+                                        'Source' => 'simple_buckets.c',
+                                        'SourceLine' => '38'
+                                      },
+                            '38937' => {
+                                         'Data' => 1,
+                                         'Header' => 'serf_bucket_types.h',
+                                         'Return' => '1404',
+                                         'ShortName' => 'serf_bucket_type_headers',
+                                         'Source' => 'headers_buckets.c',
+                                         'SourceLine' => '335'
+                                       },
+                            '44239' => {
+                                         'Data' => 1,
+                                         'Header' => 'serf_bucket_types.h',
+                                         'Return' => '1404',
+                                         'ShortName' => 'serf_bucket_type_dechunk',
+                                         'Source' => 'dechunk_buckets.c',
+                                         'SourceLine' => '177'
+                                       },
+                            '47782' => {
+                                         'Data' => 1,
+                                         'Header' => 'serf_bucket_types.h',
+                                         'Return' => '1404',
+                                         'ShortName' => 'serf_bucket_type_deflate',
+                                         'Source' => 'deflate_buckets.c',
+                                         'SourceLine' => '364'
+                                       },
+                            '50217' => {
+                                         'Data' => 1,
+                                         'Header' => 'serf_bucket_types.h',
+                                         'Return' => '1404',
+                                         'ShortName' => 'serf_bucket_type_limit',
+                                         'Source' => 'limit_buckets.c',
+                                         'SourceLine' => '113'
+                                       },
+                            '6528' => {
+                                        'Data' => 1,
+                                        'Header' => 'serf_bucket_types.h',
+                                        'Return' => '1404',
+                                        'ShortName' => 'serf_bucket_type_request',
+                                        'Source' => 'request_buckets.c',
+                                        'SourceLine' => '160'
+                                      },
+                            '6549' => {
+                                        'Header' => 'serf.h',
+                                        'Line' => '645',
+                                        'Param' => {
+                                                     '0' => {
+                                                              'name' => 'allocator',
+                                                              'type' => '6571'
+                                                            }
+                                                   },
+                                        'Reg' => {
+                                                   '0' => 'rdi'
+                                                 },
+                                        'Return' => '4064',
+                                        'ShortName' => 'serf_bucket_allocator_get_pool',
+                                        'Source' => 'allocator.c',
+                                        'SourceLine' => '147'
+                                      },
+                            '6709' => {
+                                        'Header' => 'serf_bucket_types.h',
+                                        'Line' => '225',
+                                        'Param' => {
+                                                     '0' => {
+                                                              'name' => 'headers_bucket',
+                                                              'type' => '1172'
+                                                            },
+                                                     '1' => {
+                                                              'name' => 'header',
+                                                              'type' => '369'
+                                                            },
+                                                     '2' => {
+                                                              'name' => 'value',
+                                                              'type' => '369'
+                                                            }
+                                                   },
+                                        'Reg' => {
+                                                   '0' => 'rdi',
+                                                   '1' => 'rsi',
+                                                   '2' => 'rdx'
+                                                 },
+                                        'Return' => '1',
+                                        'ShortName' => 'serf_bucket_headers_set',
+                                        'Source' => 'headers_buckets.c',
+                                        'SourceLine' => '110'
+                                      },
+                            '6736' => {
+                                        'Header' => 'serf_bucket_types.h',
+                                        'Line' => '298',
+                                        'Param' => {
+                                                     '0' => {
+                                                              'name' => 'stream',
+                                                              'type' => '1172'
+                                                            },
+                                                     '1' => {
+                                                              'name' => 'allocator',
+                                                              'type' => '1463'
+                                                            }
+                                                   },
+                                        'Reg' => {
+                                                   '0' => 'rdi',
+                                                   '1' => 'rsi'
+                                                 },
+                                        'Return' => '1172',
+                                        'ShortName' => 'serf_bucket_chunk_create',
+                                        'Source' => 'chunk_buckets.c',
+                                        'SourceLine' => '39'
+                                      },
+                            '6811' => {
+                                        'Header' => 'serf_bucket_types.h',
+                                        'Line' => '215',
+                                        'Param' => {
+                                                     '0' => {
+                                                              'name' => 'allocator',
+                                                              'type' => '1463'
+                                                            }
+                                                   },
+                                        'Reg' => {
+                                                   '0' => 'rdi'
+                                                 },
+                                        'Return' => '1172',
+                                        'ShortName' => 'serf_bucket_headers_create',
+                                        'Source' => 'headers_buckets.c',
+                                        'SourceLine' => '56'
+                                      },
+                            '73731' => {
+                                         'Data' => 1,
+                                         'Header' => 'serf_bucket_types.h',
+                                         'Return' => '1404',
+                                         'ShortName' => 'serf_bucket_type_ssl_encrypt',
+                                         'Source' => 'ssl_buckets.c',
+                                         'SourceLine' => '690'
+                                       },
+                            '73753' => {
+                                         'Data' => 1,
+                                         'Header' => 'serf_bucket_types.h',
+                                         'Return' => '1404',
+                                         'ShortName' => 'serf_bucket_type_ssl_decrypt',
+                                         'Source' => 'ssl_buckets.c',
+                                         'SourceLine' => '701'
+                                       },
+                            '76760' => {
+                                         'Data' => 1,
+                                         'Header' => 'serf_bucket_types.h',
+                                         'Return' => '1404',
+                                         'ShortName' => 'serf_bucket_type_barrier',
+                                         'Source' => 'barrier_buckets.c',
+                                         'SourceLine' => '77'
+                                       },
+                            '79607' => {
+                                         'Data' => 1,
+                                         'Header' => 'serf_bucket_types.h',
+                                         'Return' => '1404',
+                                         'ShortName' => 'serf_bucket_type_chunk',
+                                         'Source' => 'chunk_buckets.c',
+                                         'SourceLine' => '226'
+                                       }
+                          },
+          'SymbolVersion' => {
+                               'BIO_clear_flags' => 'strcasecmp@@GLIBC_2.2.5',
+                               'BIO_new' => 'strcasecmp@@GLIBC_2.2.5',
+                               'BIO_set_flags' => 'strcasecmp@@GLIBC_2.2.5',
+                               'BIO_test_flags' => 'strcasecmp@@GLIBC_2.2.5',
+                               'CRYPTO_set_mem_functions' => 'strcasecmp@@GLIBC_2.2.5',
+                               'ERR_load_crypto_strings' => 'strcasecmp@@GLIBC_2.2.5',
+                               'OPENSSL_add_all_algorithms_noconf' => 'strcasecmp@@GLIBC_2.2.5',
+                               'SSL_CTX_ctrl' => 'strcasecmp@@GLIBC_2.2.5',
+                               'SSL_CTX_free' => 'strcasecmp@@GLIBC_2.2.5',
+                               'SSL_CTX_new' => 'strcasecmp@@GLIBC_2.2.5',
+                               'SSL_free' => 'strcasecmp@@GLIBC_2.2.5',
+                               'SSL_get_error' => 'strcasecmp@@GLIBC_2.2.5',
+                               'SSL_library_init' => 'strcasecmp@@GLIBC_2.2.5',
+                               'SSL_load_error_strings' => 'strcasecmp@@GLIBC_2.2.5',
+                               'SSL_new' => 'strcasecmp@@GLIBC_2.2.5',
+                               'SSL_read' => 'strcasecmp@@GLIBC_2.2.5',
+                               'SSL_set_bio' => 'strcasecmp@@GLIBC_2.2.5',
+                               'SSL_set_connect_state' => 'strcasecmp@@GLIBC_2.2.5',
+                               'SSL_write' => 'strcasecmp@@GLIBC_2.2.5',
+                               'SSLv23_client_method' => 'strcasecmp@@GLIBC_2.2.5',
+                               '_ITM_deregisterTMCloneTable' => 'strcasecmp@@GLIBC_2.2.5',
+                               '_ITM_registerTMCloneTable' => 'strcasecmp@@GLIBC_2.2.5',
+                               '_Jv_RegisterClasses' => 'strcasecmp@@GLIBC_2.2.5',
+                               '__gmon_start__' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_allocator_alloc' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_allocator_free' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_array_make' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_array_push' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_date_checkmask' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_file_name_get' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_file_read' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_mmap_create' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_mmap_offset' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_palloc' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_pollset_add' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_pollset_create' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_pollset_poll' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_pollset_remove' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_pool_allocator_get' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_pool_cleanup_register' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_pool_clear' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_pool_create_ex' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_pool_destroy' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_pstrcatv' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_snprintf' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_socket_close' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_socket_connect' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_socket_create' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_socket_opt_set' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_socket_recv' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_socket_sendv' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_socket_timeout_set' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_stat' => 'strcasecmp@@GLIBC_2.2.5',
+                               'apr_strtoi64' => 'strcasecmp@@GLIBC_2.2.5',
+                               'crc32' => 'strcasecmp@@GLIBC_2.2.5',
+                               'inflate' => 'strcasecmp@@GLIBC_2.2.5',
+                               'inflateEnd' => 'strcasecmp@@GLIBC_2.2.5',
+                               'inflateInit2_' => 'strcasecmp@@GLIBC_2.2.5'
+                             },
+          'Symbols' => {
+                         'libserf-0.so.0.0.0' => {
+                                                   '_fini' => 1,
+                                                   '_init' => 1,
+                                                   'serf_bmemdup' => 1,
+                                                   'serf_bstrdup' => 1,
+                                                   'serf_bstrmemdup' => 1,
+                                                   'serf_bucket_aggregate_append' => 1,
+                                                   'serf_bucket_aggregate_append_iovec' => 1,
+                                                   'serf_bucket_aggregate_become' => 1,
+                                                   'serf_bucket_aggregate_create' => 1,
+                                                   'serf_bucket_aggregate_prepend' => 1,
+                                                   'serf_bucket_aggregate_prepend_iovec' => 1,
+                                                   'serf_bucket_allocator_create' => 1,
+                                                   'serf_bucket_allocator_get_pool' => 1,
+                                                   'serf_bucket_barrier_create' => 1,
+                                                   'serf_bucket_chunk_create' => 1,
+                                                   'serf_bucket_create' => 1,
+                                                   'serf_bucket_dechunk_create' => 1,
+                                                   'serf_bucket_deflate_create' => 1,
+                                                   'serf_bucket_file_create' => 1,
+                                                   'serf_bucket_headers_create' => 1,
+                                                   'serf_bucket_headers_do' => 1,
+                                                   'serf_bucket_headers_get' => 1,
+                                                   'serf_bucket_headers_set' => 1,
+                                                   'serf_bucket_headers_setc' => 1,
+                                                   'serf_bucket_headers_setn' => 1,
+                                                   'serf_bucket_headers_setx' => 1,
+                                                   'serf_bucket_limit_create' => 1,
+                                                   'serf_bucket_mem_alloc' => 1,
+                                                   'serf_bucket_mem_free' => 1,
+                                                   'serf_bucket_mmap_create' => 1,
+                                                   'serf_bucket_request_become' => 1,
+                                                   'serf_bucket_request_create' => 1,
+                                                   'serf_bucket_request_get_headers' => 1,
+                                                   'serf_bucket_response_create' => 1,
+                                                   'serf_bucket_response_get_headers' => 1,
+                                                   'serf_bucket_response_set_head' => 1,
+                                                   'serf_bucket_response_status' => 1,
+                                                   'serf_bucket_response_wait_for_headers' => 1,
+                                                   'serf_bucket_simple_copy_create' => 1,
+                                                   'serf_bucket_simple_create' => 1,
+                                                   'serf_bucket_socket_create' => 1,
+                                                   'serf_bucket_ssl_decrypt_context_get' => 1,
+                                                   'serf_bucket_ssl_decrypt_create' => 1,
+                                                   'serf_bucket_ssl_encrypt_context_get' => 1,
+                                                   'serf_bucket_ssl_encrypt_create' => 1,
+                                                   'serf_bucket_type_aggregate' => -64,
+                                                   'serf_bucket_type_barrier' => -64,
+                                                   'serf_bucket_type_chunk' => -64,
+                                                   'serf_bucket_type_dechunk' => -64,
+                                                   'serf_bucket_type_deflate' => -64,
+                                                   'serf_bucket_type_file' => -64,
+                                                   'serf_bucket_type_headers' => -64,
+                                                   'serf_bucket_type_limit' => -64,
+                                                   'serf_bucket_type_mmap' => -64,
+                                                   'serf_bucket_type_request' => -64,
+                                                   'serf_bucket_type_response' => -64,
+                                                   'serf_bucket_type_simple' => -64,
+                                                   'serf_bucket_type_socket' => -64,
+                                                   'serf_bucket_type_ssl_decrypt' => -64,
+                                                   'serf_bucket_type_ssl_encrypt' => -64,
+                                                   'serf_connection_close' => 1,
+                                                   'serf_connection_create' => 1,
+                                                   'serf_connection_request_create' => 1,
+                                                   'serf_connection_reset' => 1,
+                                                   'serf_context_create' => 1,
+                                                   'serf_context_run' => 1,
+                                                   'serf_databuf_init' => 1,
+                                                   'serf_databuf_peek' => 1,
+                                                   'serf_databuf_read' => 1,
+                                                   'serf_databuf_readline' => 1,
+                                                   'serf_debug__bucket_alloc_check' => 1,
+                                                   'serf_debug__bucket_destroy' => 1,
+                                                   'serf_debug__closed_conn' => 1,
+                                                   'serf_debug__entered_loop' => 1,
+                                                   'serf_debug__record_read' => 1,
+                                                   'serf_default_destroy' => 1,
+                                                   'serf_default_destroy_and_data' => 1,
+                                                   'serf_default_read_bucket' => 1,
+                                                   'serf_default_read_for_sendfile' => 1,
+                                                   'serf_default_read_iovec' => 1,
+                                                   'serf_linebuf_fetch' => 1,
+                                                   'serf_linebuf_init' => 1,
+                                                   'serf_request_cancel' => 1,
+                                                   'serf_request_get_alloc' => 1,
+                                                   'serf_request_get_conn' => 1,
+                                                   'serf_request_get_pool' => 1,
+                                                   'serf_request_set_handler' => 1,
+                                                   'serf_util_readline' => 1
+                                                 }
+                       },
+          'Target' => 'unix',
+          'TypeInfo' => {
+                          '1' => {
+                                   'Name' => 'void',
+                                   'Type' => 'Intrinsic'
+                                 },
+                          '10265' => {
+                                       'BaseType' => '10277',
+                                       'Header' => 'serf.h',
+                                       'Line' => '612',
+                                       'Name' => 'serf_unfreed_func_t',
+                                       'Size' => '8',
+                                       'Type' => 'Typedef'
+                                     },
+                          '1027' => {
+                                      'BaseType' => '1038',
+                                      'Header' => 'serf.h',
+                                      'Line' => '41',
+                                      'Name' => 'serf_bucket_type_t',
+                                      'Size' => '64',
+                                      'Type' => 'Typedef'
+                                    },
+                          '10277' => {
+                                       'Name' => 'void(*)(void*, void*)',
+                                       'Param' => {
+                                                    '0' => {
+                                                             'type' => '234'
+                                                           },
+                                                    '1' => {
+                                                             'type' => '234'
+                                                           }
+                                                  },
+                                       'Return' => '1',
+                                       'Size' => '8',
+                                       'Type' => 'FuncPtr'
+                                     },
+                          '1038' => {
+                                      'Header' => 'serf.h',
+                                      'Line' => '395',
+                                      'Memb' => {
+                                                  '0' => {
+                                                           'name' => 'name',
+                                                           'offset' => '0',
+                                                           'type' => '369'
+                                                         },
+                                                  '1' => {
+                                                           'name' => 'read',
+                                                           'offset' => '8',
+                                                           'type' => '1220'
+                                                         },
+                                                  '2' => {
+                                                           'name' => 'readline',
+                                                           'offset' => '16',
+                                                           'type' => '1261'
+                                                         },
+                                                  '3' => {
+                                                           'name' => 'read_iovec',
+                                                           'offset' => '24',
+                                                           'type' => '1302'
+                                                         },
+                                                  '4' => {
+                                                           'name' => 'read_for_sendfile',
+                                                           'offset' => '32',
+                                                           'type' => '1372'
+                                                         },
+                                                  '5' => {
+                                                           'name' => 'read_bucket',
+                                                           'offset' => '40',
+                                                           'type' => '1409'
+                                                         },
+                                                  '6' => {
+                                                           'name' => 'peek',
+                                                           'offset' => '48',
+                                                           'type' => '1440'
+                                                         },
+                                                  '7' => {
+                                                           'name' => 'destroy',
+                                                           'offset' => '56',
+                                                           'type' => '1457'
+                                                         }
+                                                },
+                                      'Name' => 'struct serf_bucket_type_t',
+                                      'Size' => '64',
+                                      'Type' => 'Struct'
+                                    },
+                          '1156' => {
+                                      'BaseType' => '1167',
+                                      'Header' => 'serf.h',
+                                      'Line' => '42',
+                                      'Name' => 'serf_bucket_alloc_t',
+                                      'Type' => 'Typedef'
+                                    },
+                          '1167' => {
+                                      'Line' => '83',
+                                      'Memb' => {
+                                                  '0' => {
+                                                           'name' => 'pool',
+                                                           'offset' => '0',
+                                                           'type' => '4064'
+                                                         },
+                                                  '1' => {
+                                                           'name' => 'allocator',
+                                                           'offset' => '8',
+                                                           'type' => '15008'
+                                                         },
+                                                  '2' => {
+                                                           'name' => 'unfreed',
+                                                           'offset' => '16',
+                                                           'type' => '10265'
+                                                         },
+                                                  '3' => {
+                                                           'name' => 'unfreed_baton',
+                                                           'offset' => '24',
+                                                           'type' => '234'
+                                                         },
+                                                  '4' => {
+                                                           'name' => 'num_alloc',
+                                                           'offset' => '32',
+                                                           'type' => '7482'
+                                                         },
+                                                  '5' => {
+                                                           'name' => 'freelist',
+                                                           'offset' => '40',
+                                                           'type' => '41003'
+                                                         },
+                                                  '6' => {
+                                                           'name' => 'blocks',
+                                                           'offset' => '48',
+                                                           'type' => '39541'
+                                                         },
+                                                  '7' => {
+                                                           'name' => 'track',
+                                                           'offset' => '56',
+                                                           'type' => '41009'
+                                                         }
+                                                },
+                                      'Name' => 'struct serf_bucket_alloc_t',
+                                      'PrivateABI' => 1,
+                                      'Size' => '64',
+                                      'Source' => 'allocator.c',
+                                      'Type' => 'Struct'
+                                    },
+                          '1172' => {
+                                      'BaseType' => '963',
+                                      'Name' => 'serf_bucket_t*',
+                                      'Size' => '8',
+                                      'Type' => 'Pointer'
+                                    },
+                          '1208' => {
+                                      'BaseType' => '369',
+                                      'Name' => 'char const**',
+                                      'Size' => '8',
+                                      'Type' => 'Pointer'
+                                    },
+                          '1214' => {
+                                      'BaseType' => '334',
+                                      'Name' => 'apr_size_t*',
+                                      'Size' => '8',
+                                      'Type' => 'Pointer'
+                                    },
+                          '1220' => {
+                                      'Name' => 'apr_status_t(*)(serf_bucket_t*, apr_size_t, char const**, apr_size_t*)',
+                                      'Param' => {
+                                                   '0' => {
+                                                            'type' => '1172'
+                                                          },
+                                                   '1' => {
+                                                            'type' => '334'
+                                                          },
+                                                   '2' => {
+                                                            'type' => '1208'
+                                                          },
+                                                   '3' => {
+                                                            'type' => '1214'
+                                                          }
+                                                 },
+                                      'Return' => '358',
+                                      'Size' => '8',
+                                      'Type' => 'FuncPtr'
+                                    },
+                          '1261' => {
+                                      'Name' => 'apr_status_t(*)(serf_bucket_t*, int, int*, char const**, apr_size_t*)',
+                                      'Param' => {
+                                                   '0' => {
+                                                            'type' => '1172'
+                                                          },
+                                                   '1' => {
+                                                            'type' => '191'
+                                                          },
+                                                   '2' => {
+                                                            'type' => '328'
+                                                          },
+                                                   '3' => {
+                                                            'type' => '1208'
+                                                          },
+                                                   '4' => {
+                                                            'type' => '1214'
+                                                          }
+                                                 },
+                                      'Return' => '358',
+                                      'Size' => '8',
+                                      'Type' => 'FuncPtr'
+                                    },
+                          '1302' => {
+                                      'Name' => 'apr_status_t(*)(serf_bucket_t*, apr_size_t, int, struct iovec*, int*)',
+                                      'Param' => {
+                                                   '0' => {
+                                                            'type' => '1172'
+                                                          },
+                                                   '1' => {
+                                                            'type' => '334'
+                                                          },
+                                                   '2' => {
+                                                            'type' => '191'
+                                                          },
+                                                   '3' => {
+                                                            'type' => '322'
+                                                          },
+                                                   '4' => {
+                                                            'type' => '328'
+                                                          }
+                                                 },
+                                      'Return' => '358',
+                                      'Size' => '8',
+                                      'Type' => 'FuncPtr'
+                                    },
+                          '1348' => {
+                                      'BaseType' => '886',
+                                      'Name' => 'apr_hdtr_t*',
+                                      'Size' => '8',
+                                      'Type' => 'Pointer'
+                                    },
+                          '1354' => {
+                                      'BaseType' => '1360',
+                                      'Name' => 'apr_file_t**',
+                                      'Size' => '8',
+                                      'Type' => 'Pointer'
+                                    },
+                          '1360' => {
+                                      'BaseType' => '875',
+                                      'Name' => 'apr_file_t*',
+                                      'Size' => '8',
+                                      'Type' => 'Pointer'
+                                    },
+                          '1366' => {
+                                      'BaseType' => '346',
+                                      'Name' => 'apr_off_t*',
+                                      'Size' => '8',
+                                      'Type' => 'Pointer'
+                                    },
+                          '1372' => {
+                                      'Name' => 'apr_status_t(*)(serf_bucket_t*, apr_size_t, apr_hdtr_t*, apr_file_t**, apr_off_t*, apr_size_t*)',
+                                      'Param' => {
+                                                   '0' => {
+                                                            'type' => '1172'
+                                                          },
+                                                   '1' => {
+                                                            'type' => '334'
+                                                          },
+                                                   '2' => {
+                                                            'type' => '1348'
+                                                          },
+                                                   '3' => {
+                                                            'type' => '1354'
+                                                          },
+                                                   '4' => {
+                                                            'type' => '1366'
+                                                          },
+                                                   '5' => {
+                                                            'type' => '1214'
+                                                          }
+                                                 },
+                                      'Return' => '358',
+                                      'Size' => '8',
+                                      'Type' => 'FuncPtr'
+                                    },
+                          '1398' => {
+                                      'BaseType' => '1404',
+                                      'Name' => 'serf_bucket_type_t const*',
+                                      'Size' => '8',
+                                      'Type' => 'Pointer'
+                                    },
+                          '1404' => {
+                                      'BaseType' => '1027',
+                                      'Name' => 'serf_bucket_type_t const',
+                                      'Size' => '64',
+                                      'Type' => 'Const'
+                                    },
+                          '1409' => {
+                                      'Name' => 'serf_bucket_t*(*)(serf_bucket_t*, serf_bucket_type_t const*)',
+                                      'Param' => {
+                                                   '0' => {
+                                                            'type' => '1172'
+                                                          },
+                                                   '1' => {
+                                                            'type' => '1398'
+                                                          }
+                                                 },
+                                      'Return' => '1172',
+                                      'Size' => '8',
+                                      'Type' => 'FuncPtr'
+                                    },
+                          '1440' => {
+                                      'Name' => 'apr_status_t(*)(serf_bucket_t*, char const**, apr_size_t*)',
+                                      'Param' => {
+                                                   '0' => {
+                                                            'type' => '1172'
+                                                          },
+                                                   '1' => {
+                                                            'type' => '1208'
+                                                          },
+                                                   '2' => {
+                                                            'type' => '1214'
+                                                          }
+                                                 },
+                                      'Return' => '358',
+                                      'Size' => '8',
+                                      'Type' => 'FuncPtr'
+                                    },
+                          '1457' => {
+                                      'Name' => 'void(*)(serf_bucket_t*)',
+                                      'Param' => {
+                                                   '0' => {
+                                                            'type' => '1172'
+                                                          }
+                                                 },
+                                      'Return' => '1',
+                                      'Size' => '8',
+                                      'Type' => 'FuncPtr'
+                                    },
+                          '1463' => {
+                                      'BaseType' => '1156',
+                                      'Name' => 'serf_bucket_alloc_t*',
+                                      'Size' => '8',
+                                      'Type' => 'Pointer'
+                                    },
+                          '1469' => {
+                                      'BaseType' => '1480',
+                                      'Header' => 'serf_bucket_types.h',
+                                      'Line' => '173',
+                                      'Name' => 'serf_simple_freefunc_t',
+                                      'Size' => '8',
+                                      'Type' => 'Typedef'
+                                    },
+                          '1480' => {
+                                      'Name' => 'void(*)(void*, char const*)',
+                                      'Param' => {
+                                                   '0' => {
+                                                            'type' => '234'
+                                                          },
+                                                   '1' => {
+                                                            'type' => '369'
+                                                          }
+                                                 },
+                                      'Return' => '1',
+                                      'Size' => '8',
+                                      'Type' => 'FuncPtr'
+                                    },
+                          '15008' => {
+                                       'BaseType' => '7601',
+                                       'Name' => 'apr_allocator_t*',
+                                       'Size' => '8',
+                                       'Type' => 'Pointer'
+                                     },
+                          '163' => {
+                                     'Name' => 'unsigned int',
+                                     'Size' => '4',
+                                     'Type' => 'Intrinsic'
+                                   },
+                          '16745' => {
+                                       'Header' => 'serf.h',
+                                       'Line' => '665',
+                                       'Memb' => {
+                                                   '0' => {
+                                                            'name' => 'SERF_LINEBUF_EMPTY',
+                                                            'value' => '0'
+                                                          },
+                                                   '1' => {
+                                                            'name' => 'SERF_LINEBUF_READY',
+                                                            'value' => '1'
+                                                          },
+                                                   '2' => {
+                                                            'name' => 'SERF_LINEBUF_PARTIAL',
+                                                            'value' => '2'
+                                                          },
+                                                   '3' => {
+                                                            'name' => 'SERF_LINEBUF_CRLF_SPLIT',
+                                                            'value' => '3'
+                                                          }
+                                                 },
+                                       'Name' => 'anon-enum-serf.h-665',
+                                       'Size' => '4',
+                                       'Type' => 'Enum'
+                                     },
+                          '16829' => {
+                                       'BaseType' => '242',
+                                       'Name' => 'char[8000]',
+                                       'Size' => '8000',
+                                       'Type' => 'Array'
+                                     },
+                          '16846' => {
+                                       'Header' => 'serf.h',
+                                       'Line' => '678',
+                                       'Memb' => {
+                                                   '0' => {
+                                                            'name' => 'state',
+                                                            'offset' => '0',
+                                                            'type' => '16745'
+                                                          },
+                                                   '1' => {
+                                                            'name' => 'used',
+                                                            'offset' => '8',
+                                                            'type' => '334'
+                                                          },
+                                                   '2' => {
+                                                            'name' => 'line',
+                                                            'offset' => '16',
+                                                            'type' => '16829'
+                                                          }
+                                                 },
+                                       'Name' => 'struct serf_linebuf_t',
+                                       'Size' => '8016',
+                                       'Type' => 'Struct'
+                                     },
+                          '16858' => {
+                                       'BaseType' => '16869',
+                                       'Header' => 'serf_bucket_util.h',
+                                       'Line' => '182',
+                                       'Name' => 'serf_databuf_reader_t',
+                                       'Size' => '8',
+                                       'Type' => 'Typedef'
+                                     },
+                          '16869' => {
+                                       'Name' => 'apr_status_t(*)(void*, apr_size_t, char*, apr_size_t*)',
+                                       'Param' => {
+                                                    '0' => {
+                                                             'type' => '234'
+                                                           },
+                                                    '1' => {
+                                                             'type' => '334'
+                                                           },
+                                                    '2' => {
+                                                             'type' => '236'
+                                                           },
+                                                    '3' => {
+                                                             'type' => '1214'
+                                                           }
+                                                  },
+                                       'Return' => '358',
+                                       'Size' => '8',
+                                       'Type' => 'FuncPtr'
+                                     },
+                          '16987' => {
+                                       'Header' => 'serf_bucket_util.h',
+                                       'Line' => '214',
+                                       'Memb' => {
+                                                   '0' => {
+                                                            'name' => 'current',
+                                                            'offset' => '0',
+                                                            'type' => '369'
+                                                          },
+                                                   '1' => {
+                                                            'name' => 'remaining',
+                                                            'offset' => '8',
+                                                            'type' => '334'
+                                                          },
+                                                   '2' => {
+                                                            'name' => 'read',
+                                                            'offset' => '16',
+                                                            'type' => '16858'
+                                                          },
+                                                   '3' => {
+                                                            'name' => 'read_baton',
+                                                            'offset' => '24',
+                                                            'type' => '234'
+                                                          },
+                                                   '4' => {
+                                                            'name' => 'status',
+                                                            'offset' => '32',
+                                                            'type' => '358'
+                                                          },
+                                                   '5' => {
+                                                            'name' => 'buf',
+                                                            'offset' => '36',
+                                                            'type' => '16829'
+                                                          }
+                                                 },
+                                       'Name' => 'struct serf_databuf_t',
+                                       'Size' => '8040',
+                                       'Type' => 'Struct'
+                                     },
+                          '170' => {
+                                     'Name' => 'unsigned long',
+                                     'Size' => '8',
+                                     'Type' => 'Intrinsic'
+                                   },
+                          '17125' => {
+                                       'BaseType' => '16987',
+                                       'Name' => 'serf_databuf_t*',
+                                       'Size' => '8',
+                                       'Type' => 'Pointer'
+                                     },
+                          '191' => {
+                                     'Name' => 'int',
+                                     'Size' => '4',
+                                     'Type' => 'Intrinsic'
+                                   },
+                          '19284' => {
+                                       'BaseType' => '16846',
+                                       'Name' => 'serf_linebuf_t*',
+                                       'Size' => '8',
+                                       'Type' => 'Pointer'
+                                     },
+                          '198' => {
+                                     'Name' => 'long',
+                                     'Size' => '8',
+                                     'Type' => 'Intrinsic'
+                                   },
+                          '205' => {
+                                     'BaseType' => '198',
+                                     'Header' => 'types.h',
+                                     'Line' => '131',
+                                     'Name' => '__off_t',
+                                     'Size' => '8',
+                                     'Type' => 'Typedef'
+                                   },
+                          '234' => {
+                                     'BaseType' => '1',
+                                     'Name' => 'void*',
+                                     'Size' => '8',
+                                     'Type' => 'Pointer'
+                                   },
+                          '236' => {
+                                     'BaseType' => '242',
+                                     'Name' => 'char*',
+                                     'Size' => '8',
+                                     'Type' => 'Pointer'
+                                   },
+                          '24162' => {
+                                       'BaseType' => '24173',
+                                       'Header' => 'apr_mmap.h',
+                                       'Line' => '51',
+                                       'Name' => 'apr_mmap_t',
+                                       'Size' => '40',
+                                       'Type' => 'Typedef'
+                                     },
+                          '24173' => {
+                                       'Header' => 'apr_mmap.h',
+                                       'Line' => '62',
+                                       'Memb' => {
+                                                   '0' => {
+                                                            'name' => 'cntxt',
+                                                            'offset' => '0',
+                                                            'type' => '4064'
+                                                          },
+                                                   '1' => {
+                                                            'name' => 'mm',
+                                                            'offset' => '8',
+                                                            'type' => '234'
+                                                          },
+                                                   '2' => {
+                                                            'name' => 'size',
+                                                            'offset' => '16',
+                                                            'type' => '334'
+                                                          },
+                                                   '3' => {
+                                                            'name' => 'link',
+                                                            'offset' => '24',
+                                                            'type' => '24233'
+                                                          }
+                                                 },
+                                       'Name' => 'struct apr_mmap_t',
+                                       'PrivateABI' => 1,
+                                       'Size' => '40',
+                                       'Type' => 'Struct'
+                                     },
+                          '242' => {
+                                     'Name' => 'char',
+                                     'Size' => '1',
+                                     'Type' => 'Intrinsic'
+                                   },
+                          '24233' => {
+                                       'Header' => 'apr_mmap.h',
+                                       'Line' => '85',
+                                       'Memb' => {
+                                                   '0' => {
+                                                            'name' => 'next',
+                                                            'offset' => '0',
+                                                            'type' => '24266'
+                                                          },
+                                                   '1' => {
+                                                            'name' => 'prev',
+                                                            'offset' => '8',
+                                                            'type' => '24266'
+                                                          }
+                                                 },
+                                       'Name' => 'anon-struct-apr_mmap.h-85',
+                                       'PrivateABI' => 1,
+                                       'Size' => '16',
+                                       'Type' => 'Struct'
+                                     },
+                          '24266' => {
+                                       'BaseType' => '25463',
+                                       'Name' => 'struct apr_mmap_t*volatile',
+                                       'Size' => '8',
+                                       'Type' => 'Volatile'
+                                     },
+                          '249' => {
+                                     'BaseType' => '205',
+                                     'Header' => 'types.h',
+                                     'Line' => '86',
+                                     'Name' => 'off_t',
+                                     'Size' => '8',
+                                     'Type' => 'Typedef'
+                                   },
+                          '25463' => {
+                                       'BaseType' => '24162',
+                                       'Name' => 'apr_mmap_t*',
+                                       'Size' => '8',
+                                       'Type' => 'Pointer'
+                                     },
+                          '260' => {
+                                     'BaseType' => '170',
+                                     'Header' => 'stddef.h',
+                                     'Line' => '212',
+                                     'Name' => 'size_t',
+                                     'Size' => '8',
+                                     'Type' => 'Typedef'
+                                   },
+                          '285' => {
+                                     'Header' => 'uio.h',
+                                     'Line' => '43',
+                                     'Memb' => {
+                                                 '0' => {
+                                                          'name' => 'iov_base',
+                                                          'offset' => '0',
+                                                          'type' => '234'
+                                                        },
+                                                 '1' => {
+                                                          'name' => 'iov_len',
+                                                          'offset' => '8',
+                                                          'type' => '260'
+                                                        }
+                                               },
+                                     'Name' => 'struct iovec',
+                                     'PrivateABI' => 1,
+                                     'Size' => '16',
+                                     'Type' => 'Struct'
+                                   },
+                          '322' => {
+                                     'BaseType' => '285',
+                                     'Name' => 'struct iovec*',
+                                     'Size' => '8',
+                                     'Type' => 'Pointer'
+                                   },
+                          '328' => {
+                                     'BaseType' => '191',
+                                     'Name' => 'int*',
+                                     'Size' => '8',
+                                     'Type' => 'Pointer'
+                                   },
+                          '334' => {
+                                     'BaseType' => '260',
+                                     'Header' => 'apr.h',
+                                     'Line' => '356',
+                                     'Name' => 'apr_size_t',
+                                     'Size' => '8',
+                                     'Type' => 'Typedef'
+                                   },
+                          '346' => {
+                                     'BaseType' => '249',
+                                     'Header' => 'apr.h',
+                                     'Line' => '358',
+                                     'Name' => 'apr_off_t',
+                                     'Size' => '8',
+                                     'Type' => 'Typedef'
+                                   },
+                          '358' => {
+                                     'BaseType' => '191',
+                                     'Header' => 'apr_errno.h',
+                                     'Line' => '44',
+                                     'Name' => 'apr_status_t',
+                                     'Size' => '4',
+                                     'Type' => 'Typedef'
+                                   },
+                          '369' => {
+                                     'BaseType' => '375',
+                                     'Name' => 'char const*',
+                                     'Size' => '8',
+                                     'Type' => 'Pointer'
+                                   },
+                          '375' => {
+                                     'BaseType' => '242',
+                                     'Name' => 'char const',
+                                     'Size' => '1',
+                                     'Type' => 'Const'
+                                   },
+                          '380' => {
+                                     'Name' => 'struct apr_file_t',
+                                     'PrivateABI' => 1,
+                                     'Type' => 'Struct'
+                                   },
+                          '39445' => {
+                                       'BaseType' => '39456',
+                                       'Header' => 'apr_allocator.h',
+                                       'Line' => '43',
+                                       'Name' => 'apr_memnode_t',
+                                       'Size' => '40',
+                                       'Type' => 'Typedef'
+                                     },
+                          '39456' => {
+                                       'Header' => 'apr_allocator.h',
+                                       'Line' => '54',
+                                       'Memb' => {
+                                                   '0' => {
+                                                            'name' => 'next',
+                                                            'offset' => '0',
+                                                            'type' => '39541'
+                                                          },
+                                                   '1' => {
+                                                            'name' => 'ref',
+                                                            'offset' => '8',
+                                                            'type' => '39547'
+                                                          },
+                                                   '2' => {
+                                                            'name' => 'index',
+                                                            'offset' => '16',
+                                                            'type' => '7482'
+                                                          },
+                                                   '3' => {
+                                                            'name' => 'free_index',
+                                                            'offset' => '20',
+                                                            'type' => '7482'
+                                                          },
+                                                   '4' => {
+                                                            'name' => 'first_avail',
+                                                            'offset' => '24',
+                                                            'type' => '236'
+                                                          },
+                                                   '5' => {
+                                                            'name' => 'endp',
+                                                            'offset' => '32',
+                                                            'type' => '236'
+                                                          }
+                                                 },
+                                       'Name' => 'struct apr_memnode_t',
+                                       'PrivateABI' => 1,
+                                       'Size' => '40',
+                                       'Type' => 'Struct'
+                                     },
+                          '39541' => {
+                                       'BaseType' => '39445',
+                                       'Name' => 'apr_memnode_t*',
+                                       'Size' => '8',
+                                       'Type' => 'Pointer'
+                                     },
+                          '39547' => {
+                                       'BaseType' => '39541',
+                                       'Name' => 'apr_memnode_t**',
+                                       'Size' => '8',
+                                       'Type' => 'Pointer'
+                                     },
+                          '4048' => {
+                                      'BaseType' => '4059',
+                                      'Header' => 'apr_pools.h',
+                                      'Line' => '60',
+                                      'Name' => 'apr_pool_t',
+                                      'Type' => 'Typedef'
+                                    },
+                          '4059' => {
+                                      'Name' => 'struct apr_pool_t',
+                                      'PrivateABI' => 1,
+                                      'Type' => 'Struct'
+                                    },
+                          '4064' => {
+                                      'BaseType' => '4048',
+                                      'Name' => 'apr_pool_t*',
+                                      'Size' => '8',
+                                      'Type' => 'Pointer'
+                                    },
+                          '40786' => {
+                                       'Line' => '26',
+                                       'Memb' => {
+                                                   '0' => {
+                                                            'name' => 'next',
+                                                            'offset' => '0',
+                                                            'type' => '41003'
+                                                          },
+                                                   '1' => {
+                                                            'name' => 'memnode',
+                                                            'offset' => '0',
+                                                            'type' => '39541'
+                                                          }
+                                                 },
+                                       'Name' => 'anon-union-allocator.c-26',
+                                       'PrivateABI' => 1,
+                                       'Size' => '8',
+                                       'Source' => 'allocator.c',
+                                       'Type' => 'Union'
+                                     },
+                          '40817' => {
+                                       'Line' => '24',
+                                       'Memb' => {
+                                                   '0' => {
+                                                            'name' => 'size',
+                                                            'offset' => '0',
+                                                            'type' => '334'
+                                                          },
+                                                   '1' => {
+                                                            'name' => 'u',
+                                                            'offset' => '8',
+                                                            'type' => '40786'
+                                                          }
+                                                 },
+                                       'Name' => 'struct node_header_t',
+                                       'PrivateABI' => 1,
+                                       'Size' => '16',
+                                       'Source' => 'allocator.c',
+                                       'Type' => 'Struct'
+                                     },
+                          '40858' => {
+                                       'BaseType' => '40817',
+                                       'Line' => '31',
+                                       'Name' => 'node_header_t',
+                                       'Size' => '16',
+                                       'Source' => 'allocator.c',
+                                       'Type' => 'Typedef'
+                                     },
+                          '40902' => {
+                                       'BaseType' => '40908',
+                                       'Name' => 'serf_bucket_t const*',
+                                       'Size' => '8',
+                                       'Type' => 'Pointer'
+                                     },
+                          '40908' => {
+                                       'BaseType' => '963',
+                                       'Name' => 'serf_bucket_t const',
+                                       'Size' => '24',
+                                       'Type' => 'Const'
+                                     },
+                          '40913' => {
+                                       'Line' => '71',
+                                       'Memb' => {
+                                                   '0' => {
+                                                            'name' => 'bucket',
+                                                            'offset' => '0',
+                                                            'type' => '40902'
+                                                          },
+                                                   '1' => {
+                                                            'name' => 'last',
+                                                            'offset' => '8',
+                                                            'type' => '358'
+                                                          }
+                                                 },
+                                       'Name' => 'struct read_status_t',
+                                       'PrivateABI' => 1,
+                                       'Size' => '16',
+                                       'Source' => 'allocator.c',
+                                       'Type' => 'Struct'
+                                     },
+                          '40970' => {
+                                       'BaseType' => '40913',
+                                       'Name' => 'read_status_t[100]',
+                                       'Size' => '1600',
+                                       'Type' => 'Array'
+                                     },
+                          '40986' => {
+                                       'Line' => '80',
+                                       'Memb' => {
+                                                   '0' => {
+                                                            'name' => 'next_index',
+                                                            'offset' => '0',
+                                                            'type' => '191'
+                                                          },
+                                                   '1' => {
+                                                            'name' => 'num_used',
+                                                            'offset' => '4',
+                                                            'type' => '191'
+                                                          },
+                                                   '2' => {
+                                                            'name' => 'info',
+                                                            'offset' => '8',
+                                                            'type' => '40970'
+                                                          }
+                                                 },
+                                       'Name' => 'struct track_state_t',
+                                       'PrivateABI' => 1,
+                                       'Size' => '1608',
+                                       'Source' => 'allocator.c',
+                                       'Type' => 'Struct'
+                                     },
+                          '41003' => {
+                                       'BaseType' => '40858',
+                                       'Name' => 'node_header_t*',
+                                       'Size' => '8',
+                                       'Type' => 'Pointer'
+                                     },
+                          '41009' => {
+                                       'BaseType' => '40986',
+                                       'Name' => 'track_state_t*',
+                                       'Size' => '8',
+                                       'Type' => 'Pointer'
+                                     },
+                          '6571' => {
+                                      'BaseType' => '6577',
+                                      'Name' => 'serf_bucket_alloc_t const*',
+                                      'Size' => '8',
+                                      'Type' => 'Pointer'
+                                    },
+                          '6577' => {
+                                      'BaseType' => '1156',
+                                      'Name' => 'serf_bucket_alloc_t const',
+                                      'Type' => 'Const'
+                                    },
+                          '7482' => {
+                                      'BaseType' => '163',
+                                      'Header' => 'apr.h',
+                                      'Line' => '315',
+                                      'Name' => 'apr_uint32_t',
+                                      'Size' => '4',
+                                      'Type' => 'Typedef'
+                                    },
+                          '7601' => {
+                                      'BaseType' => '7612',
+                                      'Header' => 'apr_allocator.h',
+                                      'Line' => '41',
+                                      'Name' => 'apr_allocator_t',
+                                      'Type' => 'Typedef'
+                                    },
+                          '7612' => {
+                                      'Name' => 'struct apr_allocator_t',
+                                      'PrivateABI' => 1,
+                                      'Type' => 'Struct'
+                                    },
+                          '875' => {
+                                     'BaseType' => '380',
+                                     'Header' => 'apr_file_io.h',
+                                     'Line' => '188',
+                                     'Name' => 'apr_file_t',
+                                     'Type' => 'Typedef'
+                                   },
+                          '886' => {
+                                     'BaseType' => '897',
+                                     'Header' => 'apr_network_io.h',
+                                     'Line' => '197',
+                                     'Name' => 'apr_hdtr_t',
+                                     'Size' => '32',
+                                     'Type' => 'Typedef'
+                                   },
+                          '897' => {
+                                     'Header' => 'apr_network_io.h',
+                                     'Line' => '263',
+                                     'Memb' => {
+                                                 '0' => {
+                                                          'name' => 'headers',
+                                                          'offset' => '0',
+                                                          'type' => '322'
+                                                        },
+                                                 '1' => {
+                                                          'name' => 'numheaders',
+                                                          'offset' => '8',
+                                                          'type' => '191'
+                                                        },
+                                                 '2' => {
+                                                          'name' => 'trailers',
+                                                          'offset' => '16',
+                                                          'type' => '322'
+                                                        },
+                                                 '3' => {
+                                                          'name' => 'numtrailers',
+                                                          'offset' => '24',
+                                                          'type' => '191'
+                                                        }
+                                               },
+                                     'Name' => 'struct apr_hdtr_t',
+                                     'PrivateABI' => 1,
+                                     'Size' => '32',
+                                     'Type' => 'Struct'
+                                   },
+                          '963' => {
+                                     'BaseType' => '974',
+                                     'Header' => 'serf.h',
+                                     'Line' => '40',
+                                     'Name' => 'serf_bucket_t',
+                                     'Size' => '24',
+                                     'Type' => 'Typedef'
+                                   },
+                          '974' => {
+                                     'Header' => 'serf.h',
+                                     'Line' => '586',
+                                     'Memb' => {
+                                                 '0' => {
+                                                          'name' => 'type',
+                                                          'offset' => '0',
+                                                          'type' => '1398'
+                                                        },
+                                                 '1' => {
+                                                          'name' => 'data',
+                                                          'offset' => '8',
+                                                          'type' => '234'
+                                                        },
+                                                 '2' => {
+                                                          'name' => 'allocator',
+                                                          'offset' => '16',
+                                                          'type' => '1463'
+                                                        }
+                                               },
+                                     'Name' => 'struct serf_bucket_t',
+                                     'Size' => '24',
+                                     'Type' => 'Struct'
+                                   }
+                        },
+          'UndefinedSymbols' => {
+                                  'libserf-0.so.0.0.0' => {
+                                                            'BIO_clear_flags' => 0,
+                                                            'BIO_new' => 0,
+                                                            'BIO_set_flags' => 0,
+                                                            'BIO_test_flags' => 0,
+                                                            'CRYPTO_set_mem_functions' => 0,
+                                                            'ERR_load_crypto_strings' => 0,
+                                                            'OPENSSL_add_all_algorithms_noconf' => 0,
+                                                            'SSL_CTX_ctrl' => 0,
+                                                            'SSL_CTX_free' => 0,
+                                                            'SSL_CTX_new' => 0,
+                                                            'SSL_free' => 0,
+                                                            'SSL_get_error' => 0,
+                                                            'SSL_library_init' => 0,
+                                                            'SSL_load_error_strings' => 0,
+                                                            'SSL_new' => 0,
+                                                            'SSL_read' => 0,
+                                                            'SSL_set_bio' => 0,
+                                                            'SSL_set_connect_state' => 0,
+                                                            'SSL_write' => 0,
+                                                            'SSLv23_client_method' => 0,
+                                                            '_ITM_deregisterTMCloneTable' => 0,
+                                                            '_ITM_registerTMCloneTable' => 0,
+                                                            '_Jv_RegisterClasses' => 0,
+                                                            '__ctype_b_loc@GLIBC_2.3' => 0,
+                                                            '__cxa_finalize@GLIBC_2.2.5' => 0,
+                                                            '__errno_location@GLIBC_2.2.5' => 0,
+                                                            '__gmon_start__' => 0,
+                                                            'abort@GLIBC_2.2.5' => 0,
+                                                            'apr_allocator_alloc' => 0,
+                                                            'apr_allocator_free' => 0,
+                                                            'apr_array_make' => 0,
+                                                            'apr_array_push' => 0,
+                                                            'apr_date_checkmask' => 0,
+                                                            'apr_file_name_get' => 0,
+                                                            'apr_file_read' => 0,
+                                                            'apr_mmap_create' => 0,
+                                                            'apr_mmap_offset' => 0,
+                                                            'apr_palloc' => 0,
+                                                            'apr_pollset_add' => 0,
+                                                            'apr_pollset_create' => 0,
+                                                            'apr_pollset_poll' => 0,
+                                                            'apr_pollset_remove' => 0,
+                                                            'apr_pool_allocator_get' => 0,
+                                                            'apr_pool_cleanup_register' => 0,
+                                                            'apr_pool_clear' => 0,
+                                                            'apr_pool_create_ex' => 0,
+                                                            'apr_pool_destroy' => 0,
+                                                            'apr_pstrcatv' => 0,
+                                                            'apr_snprintf' => 0,
+                                                            'apr_socket_close' => 0,
+                                                            'apr_socket_connect' => 0,
+                                                            'apr_socket_create' => 0,
+                                                            'apr_socket_opt_set' => 0,
+                                                            'apr_socket_recv' => 0,
+                                                            'apr_socket_sendv' => 0,
+                                                            'apr_socket_timeout_set' => 0,
+                                                            'apr_stat' => 0,
+                                                            'apr_strtoi64' => 0,
+                                                            'crc32' => 0,
+                                                            'free@GLIBC_2.2.5' => 0,
+                                                            'inflate' => 0,
+                                                            'inflateEnd' => 0,
+                                                            'inflateInit2_' => 0,
+                                                            'malloc@GLIBC_2.2.5' => 0,
+                                                            'memchr@GLIBC_2.2.5' => 0,
+                                                            'memcpy@GLIBC_2.14' => 0,
+                                                            'memmove@GLIBC_2.2.5' => 0,
+                                                            'memset@GLIBC_2.2.5' => 0,
+                                                            'realloc@GLIBC_2.2.5' => 0,
+                                                            'strcasecmp@GLIBC_2.2.5' => 0
+                                                          }
+                                },
+          'WordSize' => '8'
+        };
