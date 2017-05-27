@@ -1,0 +1,8 @@
+{
+  "Name":           "serf",
+  "SourceUrl":      "https://archive.apache.org/dist/serf/",
+  "Svn":            "https://svn.apache.org/repos/asf/serf/trunk",
+  "Maintainer":	    "Apache Serf",
+  "MaintainerUrl":  "https://serf.apache.org/",
+  "BuildScript":    "../src/install.sh",
+}
