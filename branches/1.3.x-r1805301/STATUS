@@ -1,0 +1,27 @@
+      * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+      *                                                       *
+      *  THIS RELEASE STREAM IS OPEN TO BUG FIXES.            *
+      *                                                       *
+      * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+This file tracks the status of releases in the 1.3.x line.
+
+Status of 1.3.10:
+
+Candidate changes:
+==================
+
+ * r1775239-1781240
+   Fix build with current LibreSSL and OpenSSL versions.
+   Justification:
+     Serf should compile out of the box.
+   Branch: ^/serf/branches/1.3.x-sslbuild
+   Votes:
+     +1: stsp, astieger
+
+Veto-blocked changes:
+=====================
+
+Approved changes:
+=================
+
