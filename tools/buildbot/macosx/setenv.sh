@@ -20,10 +20,14 @@
 ##
 ##     PATH                     The search path
 ##     SERFBB_SCONS             Path to the scons binary
-##     SERFBB_APR_15            Path of APR-1.5
+##     SERFBB_APR_DEFAULT       Path of default APR
+##     SERFBB_APU_DEFAULT       Path of default APR-Util
+##     SERFBB_APR_OPENSSL_11    Path of default APR
+##     SERFBB_APU_OPENSSL_11    Path of APR-Util to use with OpenSSL 1.1
 ##     SERFBB_APR_20_DEV        Path of APR-2.0
-##     SERFBB_OPENSSL           OpenSSL installation prefix
-##     SERFBB_SYSTEM_OPENSSL    System default OpenSSL prefix
+##     SERFBB_APU_20_DEV        Also path of APR-2.0
+##     SERFBB_OPENSSL_DEFAULT   Default OpenSSL installation prefix
+##     SERFBB_OPENSSL_11        OpenSSL 1.1.x installation prefix
 ##
 ## The invoking script will set local variable named ${scripts} that
 ## is the absolute path the parent of this file.
@@ -35,10 +39,14 @@ eval $(${environment})
 
 export PATH
 export SERFBB_SCONS
-export SERFBB_APR_15
+export SERFBB_APR_DEFAULT
+export SERFBB_APU_DEFAULT
+export SERFBB_APR_OPENSSL_11
+export SERFBB_APU_OPENSSL_11 
 export SERFBB_APR_20_DEV
-export SERFBB_OPENSSL
-export SERFBB_SYSTEM_OPENSSL
+export SERFBB_APU_20_DEV
+export SERFBB_OPENSSL_DEFAULT
+export SERFBB_OPENSSL_11
 
 
 # Set the absolute source path

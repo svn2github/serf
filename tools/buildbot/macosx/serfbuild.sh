@@ -28,16 +28,20 @@ ${scripts}/mkramdisk.sh ${volume_name} ${ramconf}
 
 # An optional parameter tells build scripts which version of APR to use
 if [ ! -z "$1" ]; then
-    aprdir=$(eval 'echo $SERFBB_'"$1")
+    aprdir=$(eval 'echo $SERFBB_APR_'"$1")
+    apudir=$(eval 'echo $SERFBB_APU_'"$1")
     aprconfig="APR=${aprdir}"
-    apuconfig="APU=${aprdir}"
+    apuconfig="APU=${apudir}"
+else
+    aprconfig="APR=${SERFBB_APR_DEFAULT}"
+    apuconfig="APU=${SERFBB_APU_DEFAULT}"
 fi
 
 # Another optional parameter tells build scripts to use a different OpenSSL
 if [ ! -z "$2" ]; then
     opensslconfig="OPENSSL=$(eval 'echo $SERFBB_'"$2")"
 else
-    opensslconfig="OPENSSL=${SERFBB_OPENSSL}"
+    opensslconfig="OPENSSL=${SERFBB_OPENSSL_DEFAULT}"
 fi
 
 # Build
@@ -45,6 +49,8 @@ cd "${absbld}"
 "${SERFBB_SCONS}" -Y "${abssrc}" \
                   "CC=clang" \
                   "PREFIX=${absbld}/.install-prefix" \
+                  "GSSAPI=/usr" \
+                  "ZLIB=/usr" \
                   "${opensslconfig}" \
                   "${aprconfig}" \
                   "${apuconfig}"
